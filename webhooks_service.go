@@ -4,7 +4,7 @@ import (
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
-	"encoding/base64"
+	"encoding/hex"
 
 	"github.com/davecgh/go-spew/spew"
 )
@@ -18,6 +18,7 @@ func (service *webhooksService) Verify(_ context.Context, signature string, body
 	key := []byte(service.client.signingSecret)
 	h := hmac.New(sha256.New, key)
 	h.Write(body)
-	spew.Dump(base64.StdEncoding.EncodeToString(h.Sum(nil)))
-	return base64.StdEncoding.EncodeToString(h.Sum(nil)) == signature
+	spew.Dump(service.client.signingSecret)
+	spew.Dump(hex.EncodeToString((h.Sum(nil))))
+	return hex.EncodeToString(h.Sum(nil)) == signature
 }
