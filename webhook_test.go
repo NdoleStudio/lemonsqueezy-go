@@ -13,20 +13,20 @@ func TestWebhook(t *testing.T) {
 	// Setup
 	t.Parallel()
 
-	var request WebhookRequest
+	var request webhookRequest[OrderCreatedWebhookRequestAttributes, OrderCreatedWebhookRequestRelationships]
 	err := json.Unmarshal(stubs.WebhookRequest(), &request)
 	assert.Nil(t, err)
 
-	assert.Equal(t, WebhookRequest{
+	assert.Equal(t, webhookRequest[OrderCreatedWebhookRequestAttributes, OrderCreatedWebhookRequestRelationships]{
 		Meta: WebhookRequestMeta{
 			EventName:  "order_created",
 			TestMode:   false,
 			CustomData: map[string]interface{}(nil),
 		},
-		Data: WebhookRequestData{
+		Data: WebhookRequestData[OrderCreatedWebhookRequestAttributes, OrderCreatedWebhookRequestRelationships]{
 			Type: "orders",
 			ID:   "1",
-			Attributes: WebhookRequestAttributes{
+			Attributes: OrderCreatedWebhookRequestAttributes{
 				StoreID:          1,
 				Identifier:       "636f855c-1fb9-4c07-b75c-3a10afef010a",
 				OrderNumber:      1,
@@ -51,7 +51,7 @@ func TestWebhook(t *testing.T) {
 				CreatedAt:        time.Date(2021, time.August, 11, 13, 47, 29, 0, time.UTC),
 				UpdatedAt:        time.Date(2021, time.August, 11, 13, 54, 54, 0, time.UTC),
 			},
-			Relationships: WebhookRequestRelationships{
+			Relationships: OrderCreatedWebhookRequestRelationships{
 				Store: ApiResponseLinks{
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/orders/1/store",

@@ -21,7 +21,7 @@ type WebhookRequestMeta struct {
 	CustomData map[string]any `json:"custom_data"`
 }
 
-// WebhookRequestAttributes attributes of a webhook request
+// OrderCreatedWebhookRequestAttributes attributes of a webhook request
 type OrderCreatedWebhookRequestAttributes struct {
 	StoreID          int        `json:"store_id"`
 	Identifier       string     `json:"identifier"`
@@ -73,7 +73,7 @@ type SubscriptionCreatedWebhookRequestAttributes struct {
 	StatusFormatted string             `json:"status_formatted"`
 }
 
-// WebhookRequestRelationships webhook request relationships
+// OrderCreatedWebhookRequestRelationships webhook request relationships
 type OrderCreatedWebhookRequestRelationships struct {
 	Store         ApiResponseLinks `json:"store"`
 	OrderItem     ApiResponseLinks `json:"order-items"`
