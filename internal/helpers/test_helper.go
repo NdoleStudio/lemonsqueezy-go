@@ -3,7 +3,7 @@ package helpers
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 )
@@ -25,12 +25,12 @@ func MakeRequestCapturingTestServer(responseCode int, response []byte, request *
 		clonedRequest := req.Clone(context.Background())
 
 		// clone body
-		body, err := ioutil.ReadAll(req.Body)
+		body, err := io.ReadAll(req.Body)
 		if err != nil {
 			panic(err)
 		}
-		req.Body = ioutil.NopCloser(bytes.NewReader(body))
-		clonedRequest.Body = ioutil.NopCloser(bytes.NewReader(body))
+		req.Body = io.NopCloser(bytes.NewReader(body))
+		clonedRequest.Body = io.NopCloser(bytes.NewReader(body))
 
 		*request = *clonedRequest
 

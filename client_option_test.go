@@ -71,34 +71,32 @@ func TestWithBaseURL(t *testing.T) {
 	})
 }
 
-func TestWithDelay(t *testing.T) {
-	t.Run("delay is set successfully", func(t *testing.T) {
-		// Setup
-		t.Parallel()
+func TestWithAPIKey(t *testing.T) {
+	// Setup
+	t.Parallel()
 
-		// Arrange
-		config := defaultClientConfig()
-		delay := 1
+	// Arrange
+	config := defaultClientConfig()
+	apiKey := "api-key"
 
-		// Act
-		WithDelay(delay).apply(config)
+	// Act
+	WithAPIKey(apiKey).apply(config)
 
-		// Assert
-		assert.Equal(t, delay, config.delay)
-	})
+	// Assert
+	assert.Equal(t, apiKey, config.apiKey)
+}
 
-	t.Run("delay is not set when value < 0", func(t *testing.T) {
-		// Setup
-		t.Parallel()
+func TestWithSigningSecret(t *testing.T) {
+	// Setup
+	t.Parallel()
 
-		// Arrange
-		config := defaultClientConfig()
-		delay := -1
+	// Arrange
+	config := defaultClientConfig()
+	signingSecret := "signing-secret"
 
-		// Act
-		WithDelay(delay).apply(config)
+	// Act
+	WithSigningSecret(signingSecret).apply(config)
 
-		// Assert
-		assert.Equal(t, 0, config.delay)
-	})
+	// Assert
+	assert.Equal(t, signingSecret, config.signingSecret)
 }

@@ -6,27 +6,27 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
-	"strconv"
 )
 
 type service struct {
 	client *Client
 }
 
-// Client is the campay API client.
+// Client is the lemonsqueezy API client.
 // Do not instantiate this client with Client{}. Use the New method instead.
 type Client struct {
-	httpClient *http.Client
-	common     service
-	baseURL    string
-	delay      int
+	httpClient    *http.Client
+	common        service
+	baseURL       string
+	apiKey        string
+	signingSecret string
 
-	Status *statusService
+	Webhooks      *webhooksService
+	Subscriptions *subscriptionsService
 }
 
-// New creates and returns a new campay.Client from a slice of campay.ClientOption.
+// New creates and returns a new Client from a slice of Option.
 func New(options ...Option) *Client {
 	config := defaultClientConfig()
 
@@ -35,13 +35,16 @@ func New(options ...Option) *Client {
 	}
 
 	client := &Client{
-		httpClient: config.httpClient,
-		delay:      config.delay,
-		baseURL:    config.baseURL,
+		httpClient:    config.httpClient,
+		apiKey:        config.apiKey,
+		signingSecret: config.signingSecret,
+		baseURL:       config.baseURL,
 	}
 
 	client.common.client = client
-	client.Status = (*statusService)(&client.common)
+	client.Subscriptions = (*subscriptionsService)(&client.common)
+	client.Webhooks = (*webhooksService)(&client.common)
+
 	return client
 }
 
@@ -65,24 +68,11 @@ func (client *Client) newRequest(ctx context.Context, method, uri string, body i
 		return nil, err
 	}
 
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Accept", "application/json")
-
-	if client.delay > 0 {
-		client.addURLParams(req, map[string]string{"sleep": strconv.Itoa(client.delay)})
-	}
+	req.Header.Set("Authorization", "Bearer "+client.apiKey)
+	req.Header.Set("Content-Type", "application/vnd.api+json")
+	req.Header.Set("Accept", "application/vnd.api+json")
 
 	return req, nil
-}
-
-// addURLParams adds urls parameters to an *http.Request
-func (client *Client) addURLParams(request *http.Request, params map[string]string) *http.Request {
-	q := request.URL.Query()
-	for key, value := range params {
-		q.Add(key, value)
-	}
-	request.URL.RawQuery = q.Encode()
-	return request
 }
 
 // do carries out an HTTP request and returns a Response
@@ -103,7 +93,7 @@ func (client *Client) do(req *http.Request) (*Response, error) {
 		return resp, err
 	}
 
-	_, err = io.Copy(ioutil.Discard, httpResponse.Body)
+	_, err = io.Copy(io.Discard, httpResponse.Body)
 	if err != nil {
 		return resp, err
 	}
@@ -120,7 +110,7 @@ func (client *Client) newResponse(httpResponse *http.Response) (*Response, error
 	resp := new(Response)
 	resp.HTTPResponse = httpResponse
 
-	buf, err := ioutil.ReadAll(resp.HTTPResponse.Body)
+	buf, err := io.ReadAll(resp.HTTPResponse.Body)
 	if err != nil {
 		return nil, err
 	}
