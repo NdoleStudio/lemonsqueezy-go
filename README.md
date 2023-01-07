@@ -28,7 +28,9 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 ## Implemented
 
 - **Subscriptions**
+  - `PATCH /v1/subscriptions/:id`: Update a subscription
   - `GET /v1/subscriptions/:id`: Retrieve a subscription
+  - `GET /v1/subscriptions`: List all subscriptions
   - `DELETE /v1/subscriptions/{id}`: Cancel an active subscription
 - **Webhooks**
   - `Verify`: Verify that webhook requests are coming from Lemon Squeezy

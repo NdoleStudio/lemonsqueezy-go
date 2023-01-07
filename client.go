@@ -22,8 +22,8 @@ type Client struct {
 	apiKey        string
 	signingSecret string
 
-	Webhooks      *webhooksService
-	Subscriptions *subscriptionsService
+	Webhooks      *WebhooksService
+	Subscriptions *SubscriptionsService
 }
 
 // New creates and returns a new Client from a slice of Option.
@@ -42,8 +42,8 @@ func New(options ...Option) *Client {
 	}
 
 	client.common.client = client
-	client.Subscriptions = (*subscriptionsService)(&client.common)
-	client.Webhooks = (*webhooksService)(&client.common)
+	client.Subscriptions = (*SubscriptionsService)(&client.common)
+	client.Webhooks = (*WebhooksService)(&client.common)
 
 	return client
 }

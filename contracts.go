@@ -1,19 +1,34 @@
 package client
 
 // ApiResponse represents an API response
-type ApiResponse[T any] struct {
-	Jsonapi ApiResponseJSONAPI `json:"jsonapi"`
-	Links   ApiResponseLink    `json:"links"`
-	Data    ApiResponseData[T] `json:"data"`
+type ApiResponse[T any, R any] struct {
+	Jsonapi ApiResponseJSONAPI    `json:"jsonapi"`
+	Links   ApiResponseLink       `json:"links"`
+	Data    ApiResponseData[T, R] `json:"data"`
+}
+
+// ApiResponseList represents an API response with a list of items
+type ApiResponseList[T any, R any] struct {
+	Jsonapi ApiResponseJSONAPI      `json:"jsonapi"`
+	Links   ApiResponseListLink     `json:"links"`
+	Meta    ApiResponseListMeta     `json:"meta"`
+	Data    []ApiResponseData[T, R] `json:"data"`
 }
 
 // ApiResponseData contains the api response data
-type ApiResponseData[T any] struct {
-	Type          string                   `json:"type"`
-	ID            string                   `json:"id"`
-	Attributes    T                        `json:"attributes"`
-	Relationships ApiResponseRelationships `json:"relationships"`
-	Links         ApiResponseLink          `json:"links"`
+type ApiResponseData[T any, R any] struct {
+	Type          string          `json:"type"`
+	ID            string          `json:"id"`
+	Attributes    T               `json:"attributes"`
+	Relationships R               `json:"relationships"`
+	Links         ApiResponseLink `json:"links"`
+}
+
+// Resource returns a lemonsqueezy resource. It's similar to ApiResponseData but without the links
+type Resource[T any] struct {
+	Type       string `json:"type"`
+	ID         string `json:"id"`
+	Attributes T      `json:"attributes"`
 }
 
 // ApiResponseJSONAPI API version
@@ -28,15 +43,27 @@ type ApiResponseLinks struct {
 
 // ApiResponseLink defines a link
 type ApiResponseLink struct {
-	Related string `json:"related"`
+	Related string `json:"related,omitempty"`
 	Self    string `json:"self"`
 }
 
-// ApiResponseRelationships relationships of an object
-type ApiResponseRelationships struct {
-	Store     ApiResponseLinks `json:"store"`
-	Order     ApiResponseLinks `json:"order"`
-	OrderItem ApiResponseLinks `json:"order-item"`
-	Product   ApiResponseLinks `json:"product"`
-	Variant   ApiResponseLinks `json:"variant"`
+// ApiResponseListLink defines a link for list os resources
+type ApiResponseListLink struct {
+	First string `json:"first"`
+	Last  string `json:"last"`
+}
+
+// ApiResponseListMeta defines the meta data for a list api response
+type ApiResponseListMeta struct {
+	Page ApiResponseListMetaPage `json:"page"`
+}
+
+// ApiResponseListMetaPage defines the pagination meta data for a list api response
+type ApiResponseListMetaPage struct {
+	CurrentPage int `json:"currentPage"`
+	From        int `json:"from"`
+	LastPage    int `json:"lastPage"`
+	PerPage     int `json:"perPage"`
+	To          int `json:"to"`
+	Total       int `json:"total"`
 }

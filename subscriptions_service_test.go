@@ -28,14 +28,14 @@ func TestSubscriptionsService_Get(t *testing.T) {
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionGetResponse(), *response.Body)
 
-	assert.Equal(t, &ApiResponse[Subscription]{
+	assert.Equal(t, &ApiResponseSubscription{
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
 		Links: ApiResponseLink{
 			Self: "https://api.lemonsqueezy.com/v1/subscriptions/1",
 		},
-		Data: ApiResponseData[Subscription]{
+		Data: ApiResponseData[Subscription, ApiResponseRelationshipsSubscription]{
 			Type: "subscriptions",
 			ID:   "1",
 			Attributes: Subscription{
@@ -63,7 +63,7 @@ func TestSubscriptionsService_Get(t *testing.T) {
 				UpdatedAt: time.Date(2021, time.August, 11, 13, 54, 19, 0, time.UTC),
 				TestMode:  false,
 			},
-			Relationships: ApiResponseRelationships{
+			Relationships: ApiResponseRelationshipsSubscription{
 				Store: ApiResponseLinks{
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/store",
@@ -143,14 +143,14 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionCancelResponse(), *response.Body)
 
-	assert.Equal(t, &ApiResponse[Subscription]{
+	assert.Equal(t, &ApiResponseSubscription{
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
 		Links: ApiResponseLink{
 			Self: "https://api.lemonsqueezy.com/v1/subscriptions/1",
 		},
-		Data: ApiResponseData[Subscription]{
+		Data: ApiResponseData[Subscription, ApiResponseRelationshipsSubscription]{
 			Type: "subscriptions",
 			ID:   "1",
 			Attributes: Subscription{
@@ -181,7 +181,7 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 				UpdatedAt: time.Date(2021, time.August, 11, 13, 54, 19, 0, time.UTC),
 				TestMode:  false,
 			},
-			Relationships: ApiResponseRelationships{
+			Relationships: ApiResponseRelationshipsSubscription{
 				Store: ApiResponseLinks{
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/store",
@@ -234,6 +234,99 @@ func TestSubscriptionsService_CancelWithError(t *testing.T) {
 
 	// Act
 	_, response, err := client.Subscriptions.Cancel(context.Background(), "1")
+
+	// Assert
+	assert.NotNil(t, err)
+
+	assert.Equal(t, http.StatusInternalServerError, response.HTTPResponse.StatusCode)
+
+	// Teardown
+	server.Close()
+}
+
+func TestSubscriptionsService_Update(t *testing.T) {
+	// Setup
+	t.Parallel()
+
+	// Arrange
+	server := helpers.MakeTestServer(http.StatusOK, stubs.SubscriptionUpdateResponse())
+	client := New(WithBaseURL(server.URL))
+
+	// Act
+	subscription, response, err := client.Subscriptions.Update(context.Background(), &SubscriptionUpdateParams{
+		Type: "subscriptions",
+		ID:   "1",
+		Attributes: SubscriptionUpdateParamsAttributes{
+			ProductID:     9,
+			VariantID:     11,
+			BillingAnchor: 29,
+		},
+	})
+
+	// Assert
+	assert.Nil(t, err)
+
+	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
+	assert.Equal(t, stubs.SubscriptionUpdateResponse(), *response.Body)
+	assert.Equal(t, "1", subscription.ID)
+
+	// Teardown
+	server.Close()
+}
+
+func TestSubscriptionsService_UpdateWithError(t *testing.T) {
+	// Setup
+	t.Parallel()
+
+	// Arrange
+	server := helpers.MakeTestServer(http.StatusInternalServerError, nil)
+	client := New(WithBaseURL(server.URL))
+
+	// Act
+	_, response, err := client.Subscriptions.Update(context.Background(), &SubscriptionUpdateParams{})
+
+	// Assert
+	assert.NotNil(t, err)
+
+	assert.Equal(t, http.StatusInternalServerError, response.HTTPResponse.StatusCode)
+
+	// Teardown
+	server.Close()
+}
+
+func TestSubscriptionsService_List(t *testing.T) {
+	// Setup
+	t.Parallel()
+
+	// Arrange
+	server := helpers.MakeTestServer(http.StatusOK, stubs.SubscriptionsListResponse())
+	client := New(WithBaseURL(server.URL))
+
+	// Act
+	subscriptions, response, err := client.Subscriptions.List(context.Background())
+
+	// Assert
+	assert.Nil(t, err)
+
+	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
+	assert.Equal(t, stubs.SubscriptionsListResponse(), *response.Body)
+	assert.Equal(t, 2, len(subscriptions.Data))
+	assert.Equal(t, "2", subscriptions.Data[1].ID)
+
+	// Teardown
+	server.Close()
+}
+
+func TestSubscriptionsService_ListWithError(t *testing.T) {
+	// Setup
+	t.Parallel()
+
+	// Arrange
+	server := helpers.MakeTestServer(http.StatusInternalServerError, nil)
+	client := New(WithBaseURL(server.URL))
+
+	// Act
+	_, response, err := client.Subscriptions.List(context.Background())
 
 	// Assert
 	assert.NotNil(t, err)

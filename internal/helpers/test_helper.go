@@ -1,11 +1,12 @@
 package helpers
 
 import (
-	"bytes"
-	"context"
-	"io"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // MakeTestServer creates an api server for testing
@@ -19,25 +20,9 @@ func MakeTestServer(responseCode int, body []byte) *httptest.Server {
 	}))
 }
 
-// MakeRequestCapturingTestServer creates an api server that captures the request object
-func MakeRequestCapturingTestServer(responseCode int, response []byte, request *http.Request) *httptest.Server {
-	return httptest.NewServer(http.HandlerFunc(func(responseWriter http.ResponseWriter, req *http.Request) {
-		clonedRequest := req.Clone(context.Background())
-
-		// clone body
-		body, err := io.ReadAll(req.Body)
-		if err != nil {
-			panic(err)
-		}
-		req.Body = io.NopCloser(bytes.NewReader(body))
-		clonedRequest.Body = io.NopCloser(bytes.NewReader(body))
-
-		*request = *clonedRequest
-
-		responseWriter.WriteHeader(responseCode)
-		_, err = responseWriter.Write(response)
-		if err != nil {
-			panic(err)
-		}
-	}))
+// AssertObjectEqualsJSON checks if the JSON representation of an object matches the expected value
+func AssertObjectEqualsJSON(t *testing.T, expectedJSON []byte, actual any) {
+	actualJSON, err := json.Marshal(actual)
+	assert.Nil(t, err)
+	assert.JSONEq(t, string(expectedJSON), string(actualJSON))
 }

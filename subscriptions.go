@@ -38,3 +38,35 @@ type SubscriptionPause struct {
 	Mode      string    `json:"mode"`
 	ResumesAt time.Time `json:"resumes_at"`
 }
+
+// SubscriptionUpdateParams are parameters for updating a subscription
+type SubscriptionUpdateParams struct {
+	Type               string                             `json:"type"`
+	ID                 string                             `json:"id"`
+	Pause              *SubscriptionPause                 `json:"pause,omitempty"`
+	Cancelled          bool                               `json:"cancelled,omitempty"`
+	InvoiceImmediately bool                               `json:"invoice_immediately,omitempty"`
+	Attributes         SubscriptionUpdateParamsAttributes `json:"attributes"`
+}
+
+// SubscriptionUpdateParamsAttributes are subscription update attributes
+type SubscriptionUpdateParamsAttributes struct {
+	ProductID     int `json:"product_id"`
+	VariantID     int `json:"variant_id"`
+	BillingAnchor int `json:"billing_anchor"`
+}
+
+// ApiResponseRelationshipsSubscription relationships of a subscription object
+type ApiResponseRelationshipsSubscription struct {
+	Store     ApiResponseLinks `json:"store"`
+	Order     ApiResponseLinks `json:"order"`
+	OrderItem ApiResponseLinks `json:"order-item"`
+	Product   ApiResponseLinks `json:"product"`
+	Variant   ApiResponseLinks `json:"variant"`
+}
+
+// ApiResponseSubscription represents a subscription api response
+type ApiResponseSubscription = ApiResponse[Subscription, ApiResponseRelationshipsSubscription]
+
+// ApiResponseSubscriptionList represents a list of subscription api responses.
+type ApiResponseSubscriptionList = ApiResponseList[Subscription, ApiResponseRelationshipsSubscription]
