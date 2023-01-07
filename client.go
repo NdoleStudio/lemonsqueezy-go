@@ -51,19 +51,19 @@ func New(options ...Option) *Client {
 // newRequest creates an API request. A relative URL can be provided in uri,
 // in which case it is resolved relative to the BaseURL of the Client.
 // URI's should always be specified without a preceding slash.
-func (client *Client) newRequest(ctx context.Context, method, uri string, body interface{}) (*http.Request, error) {
-	var buf io.ReadWriter
-	if body != nil {
-		buf = &bytes.Buffer{}
-		enc := json.NewEncoder(buf)
+func (client *Client) newRequest(ctx context.Context, method, uri string, body ...any) (*http.Request, error) {
+	var buffer io.ReadWriter
+	if len(body) > 0 {
+		buffer = &bytes.Buffer{}
+		enc := json.NewEncoder(buffer)
 		enc.SetEscapeHTML(false)
-		err := enc.Encode(body)
+		err := enc.Encode(body[0])
 		if err != nil {
 			return nil, err
 		}
 	}
 
-	req, err := http.NewRequestWithContext(ctx, method, client.baseURL+uri, buf)
+	req, err := http.NewRequestWithContext(ctx, method, client.baseURL+uri, buffer)
 	if err != nil {
 		return nil, err
 	}
@@ -76,12 +76,13 @@ func (client *Client) newRequest(ctx context.Context, method, uri string, body i
 }
 
 // do carries out an HTTP request and returns a Response
-func (client *Client) do(req *http.Request) (*Response, error) {
-	if req == nil {
-		return nil, fmt.Errorf("%T cannot be nil", req)
+func (client *Client) do(ctx context.Context, method, uri string, body ...any) (*Response, error) {
+	request, err := client.newRequest(ctx, method, uri, body...)
+	if err != nil {
+		return nil, err
 	}
 
-	httpResponse, err := client.httpClient.Do(req)
+	httpResponse, err := client.httpClient.Do(request)
 	if err != nil {
 		return nil, err
 	}
