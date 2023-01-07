@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -104,10 +103,6 @@ func (client *Client) do(ctx context.Context, method, uri string, body ...any) (
 
 // newResponse converts an *http.Response to *Response
 func (client *Client) newResponse(httpResponse *http.Response) (*Response, error) {
-	if httpResponse == nil {
-		return nil, fmt.Errorf("%T cannot be nil", httpResponse)
-	}
-
 	resp := new(Response)
 	resp.HTTPResponse = httpResponse
 
