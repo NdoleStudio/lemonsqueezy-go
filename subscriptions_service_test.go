@@ -32,7 +32,7 @@ func TestSubscriptionsService_Get(t *testing.T) {
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
-		Links: ApiResponseLink{
+		Links: ApiResponseSelfLink{
 			Self: "https://api.lemonsqueezy.com/v1/subscriptions/1",
 		},
 		Data: ApiResponseData[Subscription, ApiResponseRelationshipsSubscription]{
@@ -95,9 +95,8 @@ func TestSubscriptionsService_Get(t *testing.T) {
 					},
 				},
 			},
-			Links: ApiResponseLink{
-				Related: "",
-				Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1",
+			Links: ApiResponseSelfLink{
+				Self: "https://api.lemonsqueezy.com/v1/subscriptions/1",
 			},
 		},
 	}, subscription)
@@ -147,7 +146,7 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
-		Links: ApiResponseLink{
+		Links: ApiResponseSelfLink{
 			Self: "https://api.lemonsqueezy.com/v1/subscriptions/1",
 		},
 		Data: ApiResponseData[Subscription, ApiResponseRelationshipsSubscription]{
@@ -213,9 +212,8 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 					},
 				},
 			},
-			Links: ApiResponseLink{
-				Related: "",
-				Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1",
+			Links: ApiResponseSelfLink{
+				Self: "https://api.lemonsqueezy.com/v1/subscriptions/1",
 			},
 		},
 	}, subscription)

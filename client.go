@@ -23,6 +23,7 @@ type Client struct {
 
 	Webhooks      *WebhooksService
 	Subscriptions *SubscriptionsService
+	Users         *UsersService
 }
 
 // New creates and returns a new Client from a slice of Option.
@@ -43,6 +44,7 @@ func New(options ...Option) *Client {
 	client.common.client = client
 	client.Subscriptions = (*SubscriptionsService)(&client.common)
 	client.Webhooks = (*WebhooksService)(&client.common)
+	client.Users = (*UsersService)(&client.common)
 
 	return client
 }

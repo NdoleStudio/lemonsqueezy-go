@@ -27,6 +27,8 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 
 ## Implemented
 
+- **Users**
+  - `GET /v1/users/me`: Retrieves the currently authenticated user.
 - **Subscriptions**
   - `PATCH /v1/subscriptions/:id`: Update a subscription
   - `GET /v1/subscriptions/:id`: Retrieve a subscription
