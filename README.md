@@ -29,6 +29,9 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 
 - **Users**
   - `GET /v1/users/me`: Retrieves the currently authenticated user.
+- **Stores**
+  - `GET /v1/stores/:id`: Retrieve a store
+  - `GET /v1/stores`: List all stores
 - **Subscriptions**
   - `PATCH /v1/subscriptions/:id`: Update a subscription
   - `GET /v1/subscriptions/:id`: Retrieve a subscription
