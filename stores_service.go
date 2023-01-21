@@ -27,13 +27,13 @@ func (service *StoresService) Get(ctx context.Context, storeID string) (*StoreAp
 
 // List returns a paginated list of stores.
 // https://docs.lemonsqueezy.com/api/stores#list-all-stores
-func (service *StoresService) List(ctx context.Context) (*StoreListApiResponse, *Response, error) {
+func (service *StoresService) List(ctx context.Context) (*StoresApiResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/stores/")
 	if err != nil {
 		return nil, response, err
 	}
 
-	stores := new(StoreListApiResponse)
+	stores := new(StoresApiResponse)
 	if err = json.Unmarshal(*response.Body, stores); err != nil {
 		return nil, response, err
 	}

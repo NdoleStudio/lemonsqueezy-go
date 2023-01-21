@@ -32,6 +32,9 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Stores**
   - `GET /v1/stores/:id`: Retrieve a store
   - `GET /v1/stores`: List all stores
+- **Customers**
+  - `GET /v1/customers/:id`: Retrieve a customer
+  - `GET /v1/customers`: List all customers
 - **Subscriptions**
   - `PATCH /v1/subscriptions/:id`: Update a subscription
   - `GET /v1/subscriptions/:id`: Retrieve a subscription

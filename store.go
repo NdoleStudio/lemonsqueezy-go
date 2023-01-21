@@ -33,5 +33,5 @@ type ApiResponseRelationshipsStore struct {
 // StoreApiResponse represents a store api response
 type StoreApiResponse = ApiResponse[StoreAttributes, ApiResponseRelationshipsStore]
 
-// StoreListApiResponse represents a list of store api responses.
-type StoreListApiResponse = ApiResponseList[StoreAttributes, ApiResponseRelationshipsStore]
+// StoresApiResponse represents a list of store api responses.
+type StoresApiResponse = ApiResponseList[StoreAttributes, ApiResponseRelationshipsStore]

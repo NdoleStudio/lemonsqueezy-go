@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"testing"
 
@@ -47,6 +48,28 @@ func TestUsersService_MeWithError(t *testing.T) {
 	assert.NotNil(t, err)
 
 	assert.Equal(t, http.StatusInternalServerError, response.HTTPResponse.StatusCode)
+
+	// Teardown
+	server.Close()
+}
+
+func TestUsersService_MeCancelledContext(t *testing.T) {
+	// Setup
+	t.Parallel()
+
+	// Arrange
+	server := helpers.MakeTestServer(http.StatusInternalServerError, nil)
+	client := New(WithBaseURL(server.URL))
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+
+	// Act
+	_, response, err := client.Users.Me(ctx)
+
+	// Assert
+	assert.NotNil(t, err)
+	assert.Nil(t, response)
+	assert.True(t, errors.Is(err, context.Canceled))
 
 	// Teardown
 	server.Close()
