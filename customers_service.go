@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-// CustomersService is the API client for the `/v1/stores` endpoint
+// CustomersService is the API client for the `/v1/customers` endpoint
 type CustomersService service
 
 // Get returns the customer with the given ID.

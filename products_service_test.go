@@ -10,29 +10,29 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestCustomersService_Get(t *testing.T) {
+func TestProductsService_Get(t *testing.T) {
 	// Setup
 	t.Parallel()
 
 	// Arrange
-	server := helpers.MakeTestServer(http.StatusOK, stubs.CustomerGetResponse())
+	server := helpers.MakeTestServer(http.StatusOK, stubs.ProductGetResponse())
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	customer, response, err := client.Customers.Get(context.Background(), "1")
+	product, response, err := client.Products.Get(context.Background(), "1")
 
 	// Assert
 	assert.Nil(t, err)
 
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
-	assert.Equal(t, stubs.CustomerGetResponse(), *response.Body)
-	assert.Equal(t, "1", customer.Data.ID)
+	assert.Equal(t, stubs.ProductGetResponse(), *response.Body)
+	assert.Equal(t, "1", product.Data.ID)
 
 	// Teardown
 	server.Close()
 }
 
-func TestCustomersService_GetWithError(t *testing.T) {
+func TestProductsService_GetWithError(t *testing.T) {
 	// Setup
 	t.Parallel()
 
@@ -41,7 +41,7 @@ func TestCustomersService_GetWithError(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	_, response, err := client.Customers.Get(context.Background(), "1")
+	_, response, err := client.Products.Get(context.Background(), "1")
 
 	// Assert
 	assert.NotNil(t, err)
@@ -52,29 +52,29 @@ func TestCustomersService_GetWithError(t *testing.T) {
 	server.Close()
 }
 
-func TestCustomersService_List(t *testing.T) {
+func TestProductsService_List(t *testing.T) {
 	// Setup
 	t.Parallel()
 
 	// Arrange
-	server := helpers.MakeTestServer(http.StatusOK, stubs.CustomerListResponse())
+	server := helpers.MakeTestServer(http.StatusOK, stubs.ProductsListResponse())
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	customers, response, err := client.Customers.List(context.Background())
+	products, response, err := client.Products.List(context.Background())
 
 	// Assert
 	assert.Nil(t, err)
 
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
-	assert.Equal(t, stubs.CustomerListResponse(), *response.Body)
-	assert.Equal(t, 2, len(customers.Data))
+	assert.Equal(t, stubs.ProductsListResponse(), *response.Body)
+	assert.Equal(t, 2, len(products.Data))
 
 	// Teardown
 	server.Close()
 }
 
-func TestCustomersService_ListWithError(t *testing.T) {
+func TestProductsService_ListWithError(t *testing.T) {
 	// Setup
 	t.Parallel()
 
@@ -83,7 +83,7 @@ func TestCustomersService_ListWithError(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	_, response, err := client.Customers.List(context.Background())
+	_, response, err := client.Products.List(context.Background())
 
 	// Assert
 	assert.NotNil(t, err)
