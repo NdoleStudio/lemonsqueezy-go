@@ -28,6 +28,7 @@ type Client struct {
 	Customers     *CustomersService
 	Products      *ProductsService
 	Variants      *VariantsService
+	Files         *FilesService
 }
 
 // New creates and returns a new Client from a slice of Option.
@@ -53,6 +54,7 @@ func New(options ...Option) *Client {
 	client.Customers = (*CustomersService)(&client.common)
 	client.Products = (*ProductsService)(&client.common)
 	client.Variants = (*VariantsService)(&client.common)
+	client.Files = (*FilesService)(&client.common)
 
 	return client
 }

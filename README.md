@@ -41,6 +41,9 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Variants**
   - `GET /v1/variants/:id`: Retrieve a variant
   - `GET /v1/variants`: List all variants
+- **Files**
+  - `GET /v1/files/:id`: Retrieve a file
+  - `GET /v1/files`: List all files
 - **Subscriptions**
   - `PATCH /v1/subscriptions/:id`: Update a subscription
   - `GET /v1/subscriptions/:id`: Retrieve a subscription
