@@ -10,6 +10,7 @@ import (
 type ProductsService service
 
 // Get returns the product with the given ID.
+//
 // https://docs.lemonsqueezy.com/api/products#retrieve-a-product
 func (service *ProductsService) Get(ctx context.Context, productID string) (*ProductApiResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/products/"+productID)
@@ -26,6 +27,7 @@ func (service *ProductsService) Get(ctx context.Context, productID string) (*Pro
 }
 
 // List returns a paginated list of products.
+//
 // https://docs.lemonsqueezy.com/api/products#list-all-products
 func (service *ProductsService) List(ctx context.Context) (*ProductsApiResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/products")

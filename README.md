@@ -38,6 +38,9 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Products**
   - `GET /v1/products/:id`: Retrieve a product
   - `GET /v1/products`: List all products
+- **Variants**
+  - `GET /v1/variants/:id`: Retrieve a variant
+  - `GET /v1/variants`: List all variants
 - **Subscriptions**
   - `PATCH /v1/subscriptions/:id`: Update a subscription
   - `GET /v1/subscriptions/:id`: Retrieve a subscription

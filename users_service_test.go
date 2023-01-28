@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"net/http"
+	"strings"
 	"testing"
 
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/helpers"
@@ -70,6 +71,25 @@ func TestUsersService_MeCancelledContext(t *testing.T) {
 	assert.NotNil(t, err)
 	assert.Nil(t, response)
 	assert.True(t, errors.Is(err, context.Canceled))
+
+	// Teardown
+	server.Close()
+}
+
+func TestUsersService_MeWithInvalidJSONResponse(t *testing.T) {
+	// Setup
+	t.Parallel()
+
+	// Arrange
+	server := helpers.MakeTestServer(http.StatusOK, []byte("invalid JSON response"))
+	client := New(WithBaseURL(server.URL))
+
+	// Act
+	_, _, err := client.Users.Me(context.Background())
+
+	// Assert
+	assert.NotNil(t, err)
+	assert.True(t, strings.Contains(err.Error(), "invalid character"))
 
 	// Teardown
 	server.Close()

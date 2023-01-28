@@ -10,6 +10,7 @@ import (
 type CustomersService service
 
 // Get returns the customer with the given ID.
+//
 // https://docs.lemonsqueezy.com/api/customers#retrieve-a-customer
 func (service *CustomersService) Get(ctx context.Context, customerID string) (*CustomerApiResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/customers/"+customerID)
@@ -26,6 +27,7 @@ func (service *CustomersService) Get(ctx context.Context, customerID string) (*C
 }
 
 // List returns a paginated list of customers.
+//
 // https://docs.lemonsqueezy.com/api/customers#list-all-customers
 func (service *CustomersService) List(ctx context.Context) (*CustomersApiResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/customers")
