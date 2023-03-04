@@ -44,6 +44,12 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Files**
   - `GET /v1/files/:id`: Retrieve a file
   - `GET /v1/files`: List all files
+- **Orders**
+  - `GET /v1/orders/:id`: Retrieve an order
+  - `GET /v1/orders`: List all orders
+- **Order Items**
+  - `GET /v1/order-items/:id`: Retrieve an order item
+  - `GET /v1/order-items`: List all order items
 - **Subscriptions**
   - `PATCH /v1/subscriptions/:id`: Update a subscription
   - `GET /v1/subscriptions/:id`: Retrieve a subscription
@@ -75,7 +81,7 @@ func main() {
 All API calls return an `error` as the last return object. All successful calls will return a `nil` error.
 
 ```go
-subscription, response, err := client.Subscriptions.Get(context.Background(), "1")
+subscription, response, err := client.Sucbscriptions.Get(context.Background(), "1")
 if err != nil {
     //handle error
 }
@@ -92,3 +98,8 @@ go test -v
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+
+## API Documentation Issues
+
+- In the payload of https://docs.lemonsqueezy.com/api/order-items#list-all-order-items, remove extra `,` in the `links` property.
