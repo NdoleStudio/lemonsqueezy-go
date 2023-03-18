@@ -21,16 +21,17 @@ type Client struct {
 	apiKey        string
 	signingSecret string
 
-	Webhooks      *WebhooksService
-	Subscriptions *SubscriptionsService
-	Users         *UsersService
-	Stores        *StoresService
-	Customers     *CustomersService
-	Products      *ProductsService
-	Variants      *VariantsService
-	Files         *FilesService
-	Orders        *OrdersService
-	OrderItems    *OrderItemsService
+	Webhooks             *WebhooksService
+	Subscriptions        *SubscriptionsService
+	Users                *UsersService
+	Stores               *StoresService
+	Customers            *CustomersService
+	Products             *ProductsService
+	Variants             *VariantsService
+	Files                *FilesService
+	Orders               *OrdersService
+	OrderItems           *OrderItemsService
+	SubscriptionInvoices *SubscriptionInvoicesService
 }
 
 // New creates and returns a new Client from a slice of Option.
@@ -59,6 +60,7 @@ func New(options ...Option) *Client {
 	client.Files = (*FilesService)(&client.common)
 	client.Orders = (*OrdersService)(&client.common)
 	client.OrderItems = (*OrderItemsService)(&client.common)
+	client.SubscriptionInvoices = (*SubscriptionInvoicesService)(&client.common)
 
 	return client
 }

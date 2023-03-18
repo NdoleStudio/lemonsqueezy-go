@@ -55,6 +55,9 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
   - `GET /v1/subscriptions/:id`: Retrieve a subscription
   - `GET /v1/subscriptions`: List all subscriptions
   - `DELETE /v1/subscriptions/{id}`: Cancel an active subscription
+- **Subscription Invoices**
+  - `GET /v1/subscription-invoice/:id`: Retrieve a subscription invoice
+  - `GET /v1/subscription-invoices`: List all subscription invoices
 - **Webhooks**
   - `Verify`: Verify that webhook requests are coming from Lemon Squeezy
 
@@ -103,3 +106,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## API Documentation Issues
 
 - In the payload of https://docs.lemonsqueezy.com/api/order-items#list-all-order-items, remove extra `,` in the `links` property.
+- In the payload of https://docs.lemonsqueezy.com/api/subscription-invoices#list-all-subscription-invoices, remove extra `,` in the `links` property.
