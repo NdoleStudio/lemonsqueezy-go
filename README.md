@@ -56,8 +56,11 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
   - `GET /v1/subscriptions`: List all subscriptions
   - `DELETE /v1/subscriptions/{id}`: Cancel an active subscription
 - **Subscription Invoices**
-  - `GET /v1/subscription-invoice/:id`: Retrieve a subscription invoice
+  - `GET /v1/subscription-invoices/:id`: Retrieve a subscription invoice
   - `GET /v1/subscription-invoices`: List all subscription invoices
+- **Discount Redemptions**
+  - `GET /v1/discount-redemptions/:id`: Retrieve a discount redemption
+  - `GET /v1/discount-redemptions`: List all discount redemptions
 - **Webhooks**
   - `Verify`: Verify that webhook requests are coming from Lemon Squeezy
 

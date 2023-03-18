@@ -69,8 +69,9 @@ type ApiResponseSelfLink struct {
 
 // ApiResponseListLink defines a link for list os resources
 type ApiResponseListLink struct {
-	First string `json:"first"`
-	Last  string `json:"last"`
+	First string  `json:"first"`
+	Last  string  `json:"last"`
+	Next  *string `json:"next"`
 }
 
 // ApiResponseListMeta defines the meta data for a list api response
