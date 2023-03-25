@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"log"
 	"net/http"
 )
 
@@ -103,8 +102,6 @@ func (client *Client) do(ctx context.Context, method, uri string, body ...any) (
 	if err != nil {
 		return nil, err
 	}
-
-	log.Printf("%s", request.URL.String())
 
 	httpResponse, err := client.httpClient.Do(request)
 	if err != nil {
