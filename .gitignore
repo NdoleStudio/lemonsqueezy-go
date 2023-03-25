@@ -15,4 +15,3 @@
 # vendor/
 $path
 .idea
-e2e/client.go
