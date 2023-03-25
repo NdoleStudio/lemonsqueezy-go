@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -33,6 +34,7 @@ type Client struct {
 	OrderItems           *OrderItemsService
 	SubscriptionInvoices *SubscriptionInvoicesService
 	DiscountRedemptions  *DiscountRedemptionsService
+	Discounts            *DiscountsService
 }
 
 // New creates and returns a new Client from a slice of Option.
@@ -63,6 +65,7 @@ func New(options ...Option) *Client {
 	client.OrderItems = (*OrderItemsService)(&client.common)
 	client.SubscriptionInvoices = (*SubscriptionInvoicesService)(&client.common)
 	client.DiscountRedemptions = (*DiscountRedemptionsService)(&client.common)
+	client.Discounts = (*DiscountsService)(&client.common)
 
 	return client
 }
@@ -100,6 +103,8 @@ func (client *Client) do(ctx context.Context, method, uri string, body ...any) (
 	if err != nil {
 		return nil, err
 	}
+
+	log.Printf("%s", request.URL.String())
 
 	httpResponse, err := client.httpClient.Do(request)
 	if err != nil {

@@ -58,6 +58,11 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Subscription Invoices**
   - `GET /v1/subscription-invoices/:id`: Retrieve a subscription invoice
   - `GET /v1/subscription-invoices`: List all subscription invoices
+- **Discounts**
+  - `POST /v1/discounts`: Create a discount
+  - `GET /v1/discounts/:id`: Retrieve a discount
+  - `DELETE /v1/discounts/:id`: Delete a discount
+  - `GET /v1/discounts`: List all discounts
 - **Discount Redemptions**
   - `GET /v1/discount-redemptions/:id`: Retrieve a discount redemption
   - `GET /v1/discount-redemptions`: List all discount redemptions
