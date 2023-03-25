@@ -2,21 +2,18 @@ package e2e
 
 import (
 	"context"
-	"fmt"
-	"math/rand"
 	"net/http"
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func randomString(length int) string {
-	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
-	b := make([]byte, length+2)
-	generator.Read(b)
-	return fmt.Sprintf("%x", b)[2 : length+2]
-}
+//func randomString(length int) string {
+//	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
+//	b := make([]byte, length+2)
+//	generator.Read(b)
+//	return fmt.Sprintf("%x", b)[2 : length+2]
+//}
 
 //func TestDiscountsService_Create(t *testing.T) {
 //	// Act
