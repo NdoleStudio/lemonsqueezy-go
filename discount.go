@@ -24,7 +24,7 @@ type DiscountAttributes struct {
 
 // ApiResponseRelationshipsDiscount relationships of a discount
 type ApiResponseRelationshipsDiscount struct {
-	Store               ApiResponseLinks `json:"order"`
+	Store               ApiResponseLinks `json:"store"`
 	DiscountRedemptions ApiResponseLinks `json:"discount-redemptions"`
 	Variants            ApiResponseLinks `json:"variants"`
 }

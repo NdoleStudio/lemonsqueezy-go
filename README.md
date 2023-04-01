@@ -66,6 +66,10 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Discount Redemptions**
   - `GET /v1/discount-redemptions/:id`: Retrieve a discount redemption
   - `GET /v1/discount-redemptions`: List all discount redemptions
+- **Checkouts**
+  - `POST /v1/checkouts`: Create a checkout
+  - `GET /v1/checkouts/:id`: Retrieve a checkout
+  - `GET /v1/checkouts`: List all checkouts
 - **Webhooks**
   - `Verify`: Verify that webhook requests are coming from Lemon Squeezy
 
