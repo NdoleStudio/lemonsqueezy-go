@@ -35,6 +35,7 @@ type Client struct {
 	DiscountRedemptions  *DiscountRedemptionsService
 	Discounts            *DiscountsService
 	Checkouts            *CheckoutsService
+	LicenseKeys          *LicenseKeysService
 }
 
 // New creates and returns a new Client from a slice of Option.
@@ -67,6 +68,7 @@ func New(options ...Option) *Client {
 	client.DiscountRedemptions = (*DiscountRedemptionsService)(&client.common)
 	client.Discounts = (*DiscountsService)(&client.common)
 	client.Checkouts = (*CheckoutsService)(&client.common)
+	client.LicenseKeys = (*LicenseKeysService)(&client.common)
 
 	return client
 }

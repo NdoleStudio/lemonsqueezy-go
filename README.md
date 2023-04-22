@@ -66,6 +66,9 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Discount Redemptions**
   - `GET /v1/discount-redemptions/:id`: Retrieve a discount redemption
   - `GET /v1/discount-redemptions`: List all discount redemptions
+- **License Keys**
+  - `GET /v1/license-keys/:id`: Retrieve a license key
+  - `GET /v1/license-keys`: List all license keys
 - **Checkouts**
   - `POST /v1/checkouts`: Create a checkout
   - `GET /v1/checkouts/:id`: Retrieve a checkout
@@ -119,3 +122,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - In the payload of https://docs.lemonsqueezy.com/api/order-items#list-all-order-items, remove extra `,` in the `links` property.
 - In the payload of https://docs.lemonsqueezy.com/api/subscription-invoices#list-all-subscription-invoices, remove extra `,` in the `links` property.
+- In the payload of https://docs.lemonsqueezy.com/api/discount-redemptions#list-all-discount-redemptions, remove extra `,` in the `links` property.

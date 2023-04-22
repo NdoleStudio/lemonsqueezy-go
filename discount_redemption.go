@@ -15,14 +15,14 @@ type DiscountRedemptionAttributes struct {
 	UpdatedAt          time.Time `json:"updated_at"`
 }
 
-// ApiResponseRelationshipsDiscountRedemption relationships of a subscription invoice
+// ApiResponseRelationshipsDiscountRedemption relationships of a discount redemption
 type ApiResponseRelationshipsDiscountRedemption struct {
 	Discount ApiResponseLinks `json:"discount"`
 	Order    ApiResponseLinks `json:"order"`
 }
 
-// DiscountRedemptionApiResponse is the api response for one subscription invoice
+// DiscountRedemptionApiResponse is the api response for one discount redemption
 type DiscountRedemptionApiResponse = ApiResponse[DiscountRedemptionAttributes, ApiResponseRelationshipsDiscountRedemption]
 
-// DiscountRedemptionsApiResponse is the api response for a list of subscription invoices.
+// DiscountRedemptionsApiResponse is the api response for a list of discount redemptions.
 type DiscountRedemptionsApiResponse = ApiResponseList[DiscountRedemptionAttributes, ApiResponseRelationshipsDiscountRedemption]
