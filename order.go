@@ -5,6 +5,7 @@ import "time"
 // OrderAttributes for an order which is created when a customer purchases a product.
 type OrderAttributes struct {
 	StoreID                int        `json:"store_id"`
+	CustomerID             int        `json:"customer_id"`
 	Identifier             string     `json:"identifier"`
 	OrderNumber            int        `json:"order_number"`
 	UserName               string     `json:"user_name"`
