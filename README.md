@@ -77,6 +77,10 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
   - `GET /v1/checkouts/:id`: Retrieve a checkout
   - `GET /v1/checkouts`: List all checkouts
 - **Webhooks**
+  - `PATCH /v1/webhooks/:id`: Update a webhook
+  - `GET /v1/webhooks/:id`: Retrieve a webhook
+  - `GET /v1/webhooks`: List all webhooks
+  - `DELETE /v1/webhooks/{id}`: Update a webhook
   - `Verify`: Verify that webhook requests are coming from Lemon Squeezy
 
 ## Usage

@@ -21,7 +21,7 @@ type SubscriptionInvoiceAttributes struct {
 	TotalUsd               int        `json:"total_usd"`
 	Status                 string     `json:"status"`
 	StatusFormatted        string     `json:"status_formatted"`
-	Refunded               int        `json:"refunded"`
+	Refunded               bool       `json:"refunded"`
 	RefundedAt             *time.Time `json:"refunded_at"`
 	SubtotalFormatted      string     `json:"subtotal_formatted"`
 	DiscountTotalFormatted string     `json:"discount_total_formatted"`
