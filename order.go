@@ -30,7 +30,10 @@ type OrderAttributes struct {
 	DiscountTotalFormatted string     `json:"discount_total_formatted"`
 	TaxFormatted           string     `json:"tax_formatted"`
 	TotalFormatted         string     `json:"total_formatted"`
-	FirstOrderItem         struct {
+	Urls                   struct {
+		Receipt string `json:"receipt"`
+	} `json:"urls"`
+	FirstOrderItem struct {
 		ID          int       `json:"id"`
 		OrderID     int       `json:"order_id"`
 		ProductID   int       `json:"product_id"`
@@ -48,10 +51,12 @@ type OrderAttributes struct {
 
 // ApiResponseRelationshipsOrder relationships of an order
 type ApiResponseRelationshipsOrder struct {
-	Store         ApiResponseLinks `json:"store"`
-	OrderItems    ApiResponseLinks `json:"order-items"`
-	Subscriptions ApiResponseLinks `json:"subscriptions"`
-	LicenseKeys   ApiResponseLinks `json:"license-keys"`
+	Store               ApiResponseLinks `json:"store"`
+	Customer            ApiResponseLinks `json:"customer"`
+	OrderItems          ApiResponseLinks `json:"order-items"`
+	Subscriptions       ApiResponseLinks `json:"subscriptions"`
+	LicenseKeys         ApiResponseLinks `json:"license-keys"`
+	DiscountRedemptions ApiResponseLinks `json:"discount-redemptions"`
 }
 
 // OrderApiResponse is the api response for one order

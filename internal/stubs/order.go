@@ -15,6 +15,7 @@ func OrderGetResponse() []byte {
     "id": "1",
     "attributes": {
       "store_id": 1,
+      "customer_id": 1,
       "identifier": "104e18a2-d755-4d4b-80c4-a6c1dcbe1c10",
       "order_number": 1,
       "user_name": "Darlene Daugherty",
@@ -33,7 +34,7 @@ func OrderGetResponse() []byte {
       "tax_rate": "20.00",
       "status": "paid",
       "status_formatted": "Paid",
-      "refunded": 0,
+      "refunded": false,
       "refunded_at": null,
       "subtotal_formatted": "$9.99",
       "discount_total_formatted": "$0.00",
@@ -52,6 +53,9 @@ func OrderGetResponse() []byte {
         "deleted_at": null,
         "test_mode": false
       },
+      "urls": {
+        "receipt": "https://app.lemonsqueezy.com/my-orders/104e18a2-d755-4d4b-80c4-a6c1dcbe1c10?signature=8847fff02e1bfb0c7c43ff1cdf1b1657a8eed2029413692663b86859208c9f42"
+      },
       "created_at": "2021-08-17T09:45:53.000000Z",
       "updated_at": "2021-08-17T09:45:53.000000Z"
     },
@@ -60,6 +64,12 @@ func OrderGetResponse() []byte {
         "links": {
           "related": "https://api.lemonsqueezy.com/v1/orders/1/store",
           "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/store"
+        }
+      },
+      "customer": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/orders/1/customer",
+          "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/customer"
         }
       },
       "order-items": {
@@ -78,6 +88,12 @@ func OrderGetResponse() []byte {
         "links": {
           "related": "https://api.lemonsqueezy.com/v1/orders/1/license-keys",
           "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/license-keys"
+        }
+      },
+      "discount-redemptions": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/orders/1/discount-redemptions",
+          "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/discount-redemptions"
         }
       }
     },
@@ -116,6 +132,7 @@ func OrdersListResponse() []byte {
       "id": "1",
       "attributes": {
         "store_id": 1,
+        "customer_id": 1,
         "identifier": "104e18a2-d755-4d4b-80c4-a6c1dcbe1c10",
         "order_number": 1,
         "user_name": "Darlene Daugherty",
@@ -134,7 +151,7 @@ func OrdersListResponse() []byte {
         "tax_rate": "20.00",
         "status": "paid",
         "status_formatted": "Paid",
-        "refunded": 0,
+        "refunded": false,
         "refunded_at": null,
         "subtotal_formatted": "$9.99",
         "discount_total_formatted": "$0.00",
@@ -153,6 +170,9 @@ func OrdersListResponse() []byte {
           "deleted_at": null,
           "test_mode": false
         },
+        "urls": {
+          "receipt": "https://app.lemonsqueezy.com/my-orders/104e18a2-d755-4d4b-80c4-a6c1dcbe1c10?signature=8847fff02e1bfb0c7c43ff1cdf1b1657a8eed2029413692663b86859208c9f42"
+        },
         "created_at": "2021-08-17T09:45:53.000000Z",
         "updated_at": "2021-08-17T09:45:53.000000Z"
       },
@@ -161,6 +181,12 @@ func OrdersListResponse() []byte {
           "links": {
             "related": "https://api.lemonsqueezy.com/v1/orders/1/store",
             "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/store"
+          }
+        },
+        "customer": {
+          "links": {
+            "related": "https://api.lemonsqueezy.com/v1/orders/1/customer",
+            "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/customer"
           }
         },
         "order-items": {
@@ -179,6 +205,12 @@ func OrdersListResponse() []byte {
           "links": {
             "related": "https://api.lemonsqueezy.com/v1/orders/1/license-keys",
             "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/license-keys"
+          }
+        },
+        "discount-redemptions": {
+          "links": {
+            "related": "https://api.lemonsqueezy.com/v1/orders/1/discount-redemptions",
+            "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/discount-redemptions"
           }
         }
       },
