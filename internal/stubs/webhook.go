@@ -1,45 +1,74 @@
 package stubs
 
-// WebhookRequest is a dummy webhook request
-func WebhookRequest() []byte {
+// WebhookRequestOrderCreated is a dummy webhook request
+func WebhookRequestOrderCreated() []byte {
 	return []byte(`
 {
   "meta": {
-    "event_name": "order_created"
+    "event_name": "order_created",
+	"custom_data": {
+      "customer_id": 25
+    }
   },
   "data": {
     "type": "orders",
     "id": "1",
     "attributes": {
       "store_id": 1,
-      "identifier": "636f855c-1fb9-4c07-b75c-3a10afef010a",
+      "customer_id": 1,
+      "identifier": "89b36d62-4f5c-4353-853f-0c769d0535c8",
       "order_number": 1,
-      "user_name": "Darlene Daugherty",
-      "user_email": "gernser@yahoo.com",
-      "currency": "USD",
-      "currency_rate": "1.0000",
-      "subtotal": 999,
-      "webhook_total": 0,
-      "tax": 200,
-      "total": 1199,
-      "subtotal_usd": 999,
-      "webhook_total_usd": 0,
-      "tax_usd": 200,
-      "total_usd": 1199,
-      "tax_name": "VAT",
-      "tax_rate": "20.00",
+      "user_name": "Dan R",
+      "user_email": "dan@lemonsqueezy.com",
+      "currency": "EUR",
+      "currency_rate": "1.08405",
+      "subtotal": 1499,
+      "discount_total": 0,
+      "tax": 359,
+      "total": 1859,
+      "subtotal_usd": 1626,
+      "discount_total_usd": 0,
+      "tax_usd": 390,
+      "total_usd": 2016,
+      "tax_name": "ALV",
+      "tax_rate": "24.00",
       "status": "paid",
       "status_formatted": "Paid",
-      "refunded": false,
+      "refunded": null,
       "refunded_at": null,
-      "created_at": "2021-08-11T13:47:29.000000Z",
-      "updated_at": "2021-08-11T13:54:54.000000Z"
+      "subtotal_formatted": "€14.99",
+      "discount_total_formatted": "€0.00",
+      "tax_formatted": "€3.59",
+      "total_formatted": "€18.59",
+      "first_order_item": {
+        "order_id": 1,
+        "product_id": 1,
+        "variant_id": 1,
+        "product_name": "Product One",
+        "variant_name": "Default",
+        "price": 1500,
+        "created_at": "2023-01-17T12:26:23.000000Z",
+        "updated_at": "2023-01-17T12:26:23.000000Z",
+        "test_mode": false
+      },
+      "urls": {
+        "receipt": "https://app.lemonsqueezy.com/my-orders/89b36d62-4f5c-4353-853f-0c769d0535c8?signature=8847fff02e1bfb0c7c43ff1cdf1b1657a8eed2029413692663b86859208c9f42"
+      },
+      "created_at": "2023-01-17T12:26:23.000000Z",
+      "updated_at": "2023-01-17T12:26:23.000000Z",
+      "test_mode": false
     },
     "relationships": {
       "store": {
         "links": {
           "related": "https://api.lemonsqueezy.com/v1/orders/1/store",
           "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/store"
+        }
+      },
+      "customer": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/orders/1/customer",
+          "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/customer"
         }
       },
       "order-items": {
@@ -58,6 +87,12 @@ func WebhookRequest() []byte {
         "links": {
           "related": "https://api.lemonsqueezy.com/v1/orders/1/license-keys",
           "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/license-keys"
+        }
+      },
+      "discount-redemptions": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/orders/1/discount-redemptions",
+          "self": "https://api.lemonsqueezy.com/v1/orders/1/relationships/discount-redemptions"
         }
       }
     },

@@ -17,7 +17,7 @@ func TestWebhooksService_Verify(t *testing.T) {
 	client := New(WithSigningSecret(signingSecret))
 
 	// Act
-	isValid := client.Webhooks.Verify(context.Background(), "cde3c645ad532b305247f0668e1882aa3186d3d74d009f23f0e544632ccf6edd", stubs.WebhookRequest())
+	isValid := client.Webhooks.Verify(context.Background(), "743c0dcfaab3a3d06198183501fb92cc82e548febc80937f3fb236a4932f748f", stubs.WebhookRequestOrderCreated())
 
 	// Assert
 	assert.True(t, isValid)
