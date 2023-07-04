@@ -15,7 +15,7 @@ type LicenseKeyAttributes struct {
 	KeyShort        string      `json:"key_short"`
 	ActivationLimit int         `json:"activation_limit"`
 	InstancesCount  int         `json:"instances_count"`
-	Disabled        int         `json:"disabled"`
+	Disabled        bool        `json:"disabled"`
 	Status          string      `json:"status"`
 	StatusFormatted string      `json:"status_formatted"`
 	ExpiresAt       interface{} `json:"expires_at"`
