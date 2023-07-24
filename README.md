@@ -123,13 +123,3 @@ go test -v
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
-
-## API Documentation Issues
-
-- In the payload of https://docs.lemonsqueezy.com/api/order-items#list-all-order-items, remove extra `,` in the `links` property.
-- In the payload of https://docs.lemonsqueezy.com/api/subscription-invoices#list-all-subscription-invoices, remove extra `,` in the `links` property.
-- In the payload of https://docs.lemonsqueezy.com/api/discount-redemptions#list-all-discount-redemptions, remove extra `,` in the `links` property.
-- In the payload of https://docs.lemonsqueezy.com/api/license-key-instances#list-all-license-key-instances, remove extra `,` in the `links` property.
-- In the payload of https://docs.lemonsqueezy.com/api/license-keys#list-all-license-keys, remove extra `,` in the `links` property.
-- In the payload of the `order_created` event in https://docs.lemonsqueezy.com/help/webhooks#event-types, the money fields e.g `subtotal`, `total` is in `float` instead of `int` as they are here https://docs.lemonsqueezy.com/api/orders#retrieve-an-order
