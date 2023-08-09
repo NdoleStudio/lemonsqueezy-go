@@ -1,4 +1,4 @@
-package client
+package lemonsqueezy
 
 // ApiResponse represents an API response
 type ApiResponse[T any, R any] struct {
