@@ -266,7 +266,7 @@ func TestSubscriptionsService_Update(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionUpdateResponse(), *response.Body)
-	assert.Equal(t, "1", subscription.ID)
+	assert.Equal(t, "1", subscription.Data.ID)
 
 	// Teardown
 	server.Close()
