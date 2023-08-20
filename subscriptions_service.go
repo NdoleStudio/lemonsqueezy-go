@@ -12,13 +12,25 @@ type SubscriptionsService service
 // Update an existing subscription to specific parameter
 //
 // https://docs.lemonsqueezy.com/api/subscriptions#update-a-subscription
-func (service *SubscriptionsService) Update(ctx context.Context, params *SubscriptionUpdateParams) (*Resource[Subscription], *Response, error) {
-	response, err := service.client.do(ctx, http.MethodPatch, "/v1/subscriptions/"+params.ID, params)
+func (service *SubscriptionsService) Update(ctx context.Context, params *SubscriptionUpdateParams) (*ApiResponseSubscription, *Response, error) {
+	typeParam := "subscriptions"
+	if len(params.Type) > 0 {
+		typeParam = params.Type
+	}
+	payload := map[string]any{
+		"data": map[string]any{
+			"id":         params.ID,
+			"type":       typeParam,
+			"attributes": params.Attributes,
+		},
+	}
+
+	response, err := service.client.do(ctx, http.MethodPatch, "/v1/subscriptions/"+params.ID, payload)
 	if err != nil {
 		return nil, response, err
 	}
 
-	subscription := new(Resource[Subscription])
+	subscription := new(ApiResponseSubscription)
 	if err = json.Unmarshal(*response.Body, subscription); err != nil {
 		return nil, response, err
 	}

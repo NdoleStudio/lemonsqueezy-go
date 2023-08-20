@@ -41,19 +41,20 @@ type SubscriptionPause struct {
 
 // SubscriptionUpdateParams are parameters for updating a subscription
 type SubscriptionUpdateParams struct {
-	Type               string                             `json:"type"`
-	ID                 string                             `json:"id"`
-	Pause              *SubscriptionPause                 `json:"pause,omitempty"`
-	Cancelled          bool                               `json:"cancelled,omitempty"`
-	InvoiceImmediately bool                               `json:"invoice_immediately,omitempty"`
-	Attributes         SubscriptionUpdateParamsAttributes `json:"attributes"`
+	Type       string                             `json:"type"`
+	ID         string                             `json:"id"`
+	Attributes SubscriptionUpdateParamsAttributes `json:"attributes"`
 }
 
 // SubscriptionUpdateParamsAttributes are subscription update attributes
 type SubscriptionUpdateParamsAttributes struct {
-	ProductID     int `json:"product_id"`
-	VariantID     int `json:"variant_id"`
-	BillingAnchor int `json:"billing_anchor"`
+	ProductID          int                `json:"product_id,omitempty"`
+	VariantID          int                `json:"variant_id,omitempty"`
+	BillingAnchor      int                `json:"billing_anchor,omitempty"`
+	Cancelled          bool               `json:"cancelled"`
+	Pause              *SubscriptionPause `json:"pause,omitempty"`
+	InvoiceImmediately bool               `json:"invoice_immediately"`
+	DisableProrations  bool               `json:"disable_prorations"`
 }
 
 // ApiResponseRelationshipsSubscription relationships of a subscription object
