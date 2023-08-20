@@ -13,14 +13,10 @@ type SubscriptionsService service
 //
 // https://docs.lemonsqueezy.com/api/subscriptions#update-a-subscription
 func (service *SubscriptionsService) Update(ctx context.Context, params *SubscriptionUpdateParams) (*ApiResponseSubscription, *Response, error) {
-	typeParam := "subscriptions"
-	if len(params.Type) > 0 {
-		typeParam = params.Type
-	}
 	payload := map[string]any{
 		"data": map[string]any{
 			"id":         params.ID,
-			"type":       typeParam,
+			"type":       "subscriptions",
 			"attributes": params.Attributes,
 		},
 	}

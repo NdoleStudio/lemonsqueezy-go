@@ -252,8 +252,7 @@ func TestSubscriptionsService_Update(t *testing.T) {
 
 	// Act
 	subscription, response, err := client.Subscriptions.Update(context.Background(), &SubscriptionUpdateParams{
-		Type: "subscriptions",
-		ID:   "1",
+		ID: "1",
 		Attributes: SubscriptionUpdateParamsAttributes{
 			ProductID:     9,
 			VariantID:     11,

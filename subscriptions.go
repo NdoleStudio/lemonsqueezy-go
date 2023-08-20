@@ -41,7 +41,6 @@ type SubscriptionPause struct {
 
 // SubscriptionUpdateParams are parameters for updating a subscription
 type SubscriptionUpdateParams struct {
-	Type       string                             `json:"type"`
 	ID         string                             `json:"id"`
 	Attributes SubscriptionUpdateParamsAttributes `json:"attributes"`
 }
