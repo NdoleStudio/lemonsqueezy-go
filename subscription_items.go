@@ -5,6 +5,7 @@ import "time"
 // In Lemon Squeezy A subscription item is an object that links a price to a subscription and also contains quantity information.
 // https://docs.lemonsqueezy.com/api/subscription-items#the-subscription-item-object
 type SubscriptionItem struct {
+	ID             int       `json:"id"`
 	SubscriptionID int       `json:"subscription_id"`
 	PriceID        int       `json:"price_id"`
 	Quantity       int       `json:"quantity"`
@@ -36,9 +37,3 @@ type SubscriptionItemApiResponse = ApiResponse[SubscriptionItem, ApiResponseRela
 
 // SubscriptionItemsApiResponse represents a list of subscription items api responses
 type SubscriptionItemsApiResponse = ApiResponseList[SubscriptionItem, ApiResponseRelationshipsSubscriptionItem]
-
-// SubscriptionItemsListParams are parameters for listing a paginated list of subscription items
-type SubscriptionItemsListParams struct {
-	SubscriptionID int `json:"subscription_id,omitempty"`
-	PriceID        int `json:"price_id,omitempty"`
-}

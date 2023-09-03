@@ -40,6 +40,7 @@ func TestSubscriptionsService_Get(t *testing.T) {
 			ID:   "1",
 			Attributes: Subscription{
 				StoreID:         1,
+				CustomerID:      1,
 				OrderID:         1,
 				OrderItemID:     1,
 				ProductID:       1,
@@ -50,10 +51,20 @@ func TestSubscriptionsService_Get(t *testing.T) {
 				UserEmail:       "gernser@yahoo.com",
 				Status:          "active",
 				StatusFormatted: "Active",
+				CardBrand:       "visa",
+				CardLastFour:    "42424",
 				Pause:           nil,
 				Cancelled:       false,
 				TrialEndsAt:     nil,
 				BillingAnchor:   12,
+				FirstSubscriptionItem: &SubscriptionItem{
+					ID:             1,
+					SubscriptionID: 1,
+					PriceID:        1,
+					Quantity:       5,
+					CreatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+					UpdatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+				},
 				Urls: SubscriptionURLs{
 					UpdatePaymentMethod: "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
 				},
@@ -68,6 +79,12 @@ func TestSubscriptionsService_Get(t *testing.T) {
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/store",
 						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/store",
+					},
+				},
+				Customer: ApiResponseLinks{
+					Links: ApiResponseLink{
+						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/customer",
+						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/customer",
 					},
 				},
 				Order: ApiResponseLinks{
@@ -92,6 +109,18 @@ func TestSubscriptionsService_Get(t *testing.T) {
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/variant",
 						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/variant",
+					},
+				},
+				SubscriptionItems: ApiResponseLinks{
+					Links: ApiResponseLink{
+						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-items",
+						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-items",
+					},
+				},
+				SubscriptionInvoices: ApiResponseLinks{
+					Links: ApiResponseLink{
+						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-invoices",
+						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-invoices",
 					},
 				},
 			},
@@ -154,6 +183,7 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 			ID:   "1",
 			Attributes: Subscription{
 				StoreID:         1,
+				CustomerID:      1,
 				OrderID:         1,
 				OrderItemID:     1,
 				ProductID:       1,
@@ -168,6 +198,14 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 				Cancelled:       true,
 				TrialEndsAt:     nil,
 				BillingAnchor:   12,
+				FirstSubscriptionItem: &SubscriptionItem{
+					ID:             1,
+					SubscriptionID: 1,
+					PriceID:        1,
+					Quantity:       5,
+					CreatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+					UpdatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+				},
 				Urls: SubscriptionURLs{
 					UpdatePaymentMethod: "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
 				},
@@ -185,6 +223,12 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/store",
 						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/store",
+					},
+				},
+				Customer: ApiResponseLinks{
+					Links: ApiResponseLink{
+						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/customer",
+						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/customer",
 					},
 				},
 				Order: ApiResponseLinks{
@@ -209,6 +253,18 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/variant",
 						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/variant",
+					},
+				},
+				SubscriptionItems: ApiResponseLinks{
+					Links: ApiResponseLink{
+						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-items",
+						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-items",
+					},
+				},
+				SubscriptionInvoices: ApiResponseLinks{
+					Links: ApiResponseLink{
+						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-invoices",
+						Self:    "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-invoices",
 					},
 				},
 			},
