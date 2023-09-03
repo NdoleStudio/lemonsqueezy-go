@@ -3,6 +3,7 @@ package lemonsqueezy
 import "time"
 
 // SubscriptionInvoiceAttributes is the invoice for a subscription
+// https://docs.lemonsqueezy.com/api/subscription-invoices#the-subscription-invoice-object
 type SubscriptionInvoiceAttributes struct {
 	StoreID                int        `json:"store_id"`
 	SubscriptionID         int        `json:"subscription_id"`
