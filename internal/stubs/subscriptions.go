@@ -15,6 +15,7 @@ func SubscriptionGetResponse() []byte {
     "id": "1",
     "attributes": {
       "store_id": 1,
+      "customer_id": 1,
       "order_id": 1,
       "order_item_id": 1,
       "product_id": 1,
@@ -25,10 +26,20 @@ func SubscriptionGetResponse() []byte {
       "user_email": "gernser@yahoo.com",
       "status": "active",
       "status_formatted": "Active",
+      "card_brand": "visa",
+      "card_last_four": "42424",
       "pause": null,
       "cancelled": false,
       "trial_ends_at": null,
       "billing_anchor": 12,
+      "first_subscription_item": {
+        "id": 1,
+        "subscription_id": 1,
+        "price_id": 1,
+        "quantity": 5,
+        "created_at": "2021-08-11T13:47:28.000000Z",
+        "updated_at": "2021-08-11T13:47:28.000000Z"
+      },
       "urls": {
         "update_payment_method": "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
       },
@@ -43,6 +54,12 @@ func SubscriptionGetResponse() []byte {
         "links": {
           "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/store",
           "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/store"
+        }
+      },
+      "customer": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/customer",
+          "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/customer"
         }
       },
       "order": {
@@ -67,6 +84,18 @@ func SubscriptionGetResponse() []byte {
         "links": {
           "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/variant",
           "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/variant"
+        }
+      },
+      "subscription-items": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-items",
+          "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-items"
+        }
+      },
+      "subscription-invoices": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-invoices",
+          "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-invoices"
         }
       }
     },
@@ -93,6 +122,7 @@ func SubscriptionUpdateResponse() []byte {
     "id": "1",
     "attributes": {
       "store_id": 1,
+      "customer_id": 1,
       "order_id": 1,
       "order_item_id": 1,
       "product_id": 9,
@@ -107,6 +137,14 @@ func SubscriptionUpdateResponse() []byte {
       "cancelled": false,
       "trial_ends_at": null,
       "billing_anchor": 29,
+      "first_subscription_item": {
+        "id": 1,
+        "subscription_id": 1,
+        "price_id": 1,
+        "quantity": 5,
+        "created_at": "2021-08-11T13:47:28.000000Z",
+        "updated_at": "2021-08-11T13:47:28.000000Z"
+      },
       "urls": {
         "update_payment_method": "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
       },
@@ -148,6 +186,7 @@ func SubscriptionsListResponse() []byte {
          "id":"1",
          "attributes":{
             "store_id":1,
+            "customer_id": 1,
             "order_id":1,
             "order_item_id":1,
             "product_id":1,
@@ -162,6 +201,14 @@ func SubscriptionsListResponse() []byte {
             "cancelled":false,
             "trial_ends_at":null,
             "billing_anchor":12,
+            "first_subscription_item": {
+              "id": 1,
+              "subscription_id": 1,
+              "price_id": 1,
+              "quantity": 5,
+              "created_at": "2021-08-11T13:47:28.000000Z",
+              "updated_at": "2021-08-11T13:47:28.000000Z"
+            },
             "urls":{
                "update_payment_method":"https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
             },
@@ -177,6 +224,12 @@ func SubscriptionsListResponse() []byte {
                   "related":"https://api.lemonsqueezy.com/v1/subscriptions/1/store",
                   "self":"https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/store"
                }
+            },
+            "customer": {
+              "links": {
+                "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/customer",
+                "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/customer"
+              }
             },
             "order":{
                "links":{
@@ -201,6 +254,18 @@ func SubscriptionsListResponse() []byte {
                   "related":"https://api.lemonsqueezy.com/v1/subscriptions/1/variant",
                   "self":"https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/variant"
                }
+            },
+            "subscription-items": {
+              "links": {
+                "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-items",
+                "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-items"
+              }
+            },
+            "subscription-invoices": {
+              "links": {
+                "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-invoices",
+                "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-invoices"
+              }
             }
          },
          "links":{
@@ -212,6 +277,7 @@ func SubscriptionsListResponse() []byte {
          "id":"2",
          "attributes":{
             "store_id":2,
+            "customer_id": 2,
             "order_id":2,
             "order_item_id":2,
             "product_id":2,
@@ -226,6 +292,14 @@ func SubscriptionsListResponse() []byte {
             "cancelled":false,
             "trial_ends_at":null,
             "billing_anchor":13,
+            "first_subscription_item": {
+              "id": 2,
+              "subscription_id": 2,
+              "price_id": 2,
+              "quantity": 5,
+              "created_at": "2021-08-11T13:47:28.000000Z",
+              "updated_at": "2021-08-11T13:47:28.000000Z"
+            },
             "urls":{
                "update_payment_method":"https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
             },
@@ -241,6 +315,12 @@ func SubscriptionsListResponse() []byte {
                   "related":"https://api.lemonsqueezy.com/v1/subscriptions/1/store",
                   "self":"https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/store"
                }
+            },
+            "customer": {
+              "links": {
+                "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/customer",
+                "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/customer"
+              }
             },
             "order":{
                "links":{
@@ -265,6 +345,18 @@ func SubscriptionsListResponse() []byte {
                   "related":"https://api.lemonsqueezy.com/v1/subscriptions/1/variant",
                   "self":"https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/variant"
                }
+            },
+            "subscription-items": {
+              "links": {
+                "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-items",
+                "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-items"
+              }
+            },
+            "subscription-invoices": {
+              "links": {
+                "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-invoices",
+                "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-invoices"
+              }
             }
          },
          "links":{
@@ -291,6 +383,7 @@ func SubscriptionCancelResponse() []byte {
     "id": "1",
     "attributes": {
       "store_id": 1,
+      "customer_id": 1,
       "order_id": 1,
       "order_item_id": 1,
       "product_id": 1,
@@ -305,6 +398,14 @@ func SubscriptionCancelResponse() []byte {
       "cancelled": true,
       "trial_ends_at": null,
       "billing_anchor": 12,
+      "first_subscription_item": {
+        "id": 1,
+        "subscription_id": 1,
+        "price_id": 1,
+        "quantity": 5,
+        "created_at": "2021-08-11T13:47:28.000000Z",
+        "updated_at": "2021-08-11T13:47:28.000000Z"
+      },
       "urls": {
         "update_payment_method": "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
       },
@@ -319,6 +420,12 @@ func SubscriptionCancelResponse() []byte {
         "links": {
           "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/store",
           "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/store"
+        }
+      },
+      "customer": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/customer",
+          "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/customer"
         }
       },
       "order": {
@@ -343,6 +450,18 @@ func SubscriptionCancelResponse() []byte {
         "links": {
           "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/variant",
           "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/variant"
+        }
+      },
+      "subscription-items": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-items",
+          "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-items"
+        }
+      },
+      "subscription-invoices": {
+        "links": {
+          "related": "https://api.lemonsqueezy.com/v1/subscriptions/1/subscription-invoices",
+          "self": "https://api.lemonsqueezy.com/v1/subscriptions/1/relationships/subscription-invoices"
         }
       }
     },
