@@ -32,6 +32,7 @@ type Client struct {
 	Orders               *OrdersService
 	OrderItems           *OrderItemsService
 	SubscriptionInvoices *SubscriptionInvoicesService
+	SubscriptionItems    *SubscriptionItemsService
 	DiscountRedemptions  *DiscountRedemptionsService
 	Discounts            *DiscountsService
 	Checkouts            *CheckoutsService
@@ -66,6 +67,7 @@ func New(options ...Option) *Client {
 	client.Orders = (*OrdersService)(&client.common)
 	client.OrderItems = (*OrderItemsService)(&client.common)
 	client.SubscriptionInvoices = (*SubscriptionInvoicesService)(&client.common)
+	client.SubscriptionItems = (*SubscriptionItemsService)(&client.common)
 	client.DiscountRedemptions = (*DiscountRedemptionsService)(&client.common)
 	client.Discounts = (*DiscountsService)(&client.common)
 	client.Checkouts = (*CheckoutsService)(&client.common)

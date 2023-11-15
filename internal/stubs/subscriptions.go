@@ -41,7 +41,8 @@ func SubscriptionGetResponse() []byte {
         "updated_at": "2021-08-11T13:47:28.000000Z"
       },
       "urls": {
-        "update_payment_method": "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
+        "update_payment_method": "https://my-store.lemonsqueezy.com/subscription/1/payment-details?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+        "customer_portal": "https://my-store.lemonsqueezy.com/billing?expires=1666869343&signature=82ae290ceac8edd4190c82825dd73a8743346d894a8ddbc4898b97eb96d105a5"
       },
       "renews_at": "2022-11-12T00:00:00.000000Z",
       "ends_at": null,
@@ -146,7 +147,8 @@ func SubscriptionUpdateResponse() []byte {
         "updated_at": "2021-08-11T13:47:28.000000Z"
       },
       "urls": {
-        "update_payment_method": "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
+        "update_payment_method": "https://my-store.lemonsqueezy.com/subscription/1/payment-details?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+        "customer_portal": "https://my-store.lemonsqueezy.com/billing?expires=1666869343&signature=82ae290ceac8edd4190c82825dd73a8743346d894a8ddbc4898b97eb96d105a5"
       },
       "renews_at": "2022-11-12T00:00:00.000000Z",
       "ends_at": null,
@@ -210,7 +212,8 @@ func SubscriptionsListResponse() []byte {
               "updated_at": "2021-08-11T13:47:28.000000Z"
             },
             "urls":{
-               "update_payment_method":"https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
+              "update_payment_method": "https://my-store.lemonsqueezy.com/subscription/1/payment-details?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+              "customer_portal": "https://my-store.lemonsqueezy.com/billing?expires=1666869343&signature=82ae290ceac8edd4190c82825dd73a8743346d894a8ddbc4898b97eb96d105a5"
             },
             "renews_at":"2022-11-12T00:00:00.000000Z",
             "ends_at":null,
@@ -301,7 +304,8 @@ func SubscriptionsListResponse() []byte {
               "updated_at": "2021-08-11T13:47:28.000000Z"
             },
             "urls":{
-               "update_payment_method":"https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
+              "update_payment_method": "https://my-store.lemonsqueezy.com/subscription/2/payment-details?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+              "customer_portal": "https://my-store.lemonsqueezy.com/billing?expires=1666869343&signature=82ae290ceac8edd4190c82825dd73a8743346d894a8ddbc4898b97eb96d105a5"
             },
             "renews_at":"2022-11-12T00:00:00.000000Z",
             "ends_at":null,
@@ -407,7 +411,8 @@ func SubscriptionCancelResponse() []byte {
         "updated_at": "2021-08-11T13:47:28.000000Z"
       },
       "urls": {
-        "update_payment_method": "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413"
+        "update_payment_method": "https://my-store.lemonsqueezy.com/subscription/1/payment-details?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+        "customer_portal": "https://my-store.lemonsqueezy.com/billing?expires=1666869343&signature=82ae290ceac8edd4190c82825dd73a8743346d894a8ddbc4898b97eb96d105a5"
       },
       "renews_at": "2022-11-12T00:00:00.000000Z",
       "ends_at": "2022-11-12T00:00:00.000000Z",

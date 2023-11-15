@@ -8,7 +8,6 @@
 [![GitHub license](https://img.shields.io/github/license/NdoleStudio/lemonsqueezy-go?color=brightgreen)](https://github.com/NdoleStudio/lemonsqueezy-go/blob/master/LICENSE)
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/NdoleStudio/lemonsqueezy-go)](https://pkg.go.dev/github.com/NdoleStudio/lemonsqueezy-go)
 
-
 This package provides a go API client for the lemonsqueezy API
 
 ## Installation
@@ -58,6 +57,11 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Subscription Invoices**
   - `GET /v1/subscription-invoices/:id`: Retrieve a subscription invoice
   - `GET /v1/subscription-invoices`: List all subscription invoices
+- **Subscription Items**
+  - `GET /v1/subscription-items/:id`: Retrieve a subscription item
+  - `PATCH /v1/subscription-items/:id`: Update a subscription item
+  - `GET /v1/subscription-items`: List all subscription items
+  - `GET /v1/subscription-items/:id/current-usage`: Retrieve a subscription item's current usage
 - **Discounts**
   - `POST /v1/discounts`: Create a discount
   - `GET /v1/discounts/:id`: Retrieve a discount

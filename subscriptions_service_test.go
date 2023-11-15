@@ -28,7 +28,7 @@ func TestSubscriptionsService_Get(t *testing.T) {
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionGetResponse(), *response.Body)
 
-	assert.Equal(t, &ApiResponseSubscription{
+	assert.Equal(t, &SubscriptionApiResponse{
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
@@ -57,16 +57,19 @@ func TestSubscriptionsService_Get(t *testing.T) {
 				Cancelled:       false,
 				TrialEndsAt:     nil,
 				BillingAnchor:   12,
-				FirstSubscriptionItem: &SubscriptionItem{
-					ID:             1,
-					SubscriptionID: 1,
-					PriceID:        1,
-					Quantity:       5,
-					CreatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
-					UpdatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+				FirstSubscriptionItem: &SubscriptionFirstSubscriptionItem{
+					ID: 1,
+					SubscriptionItem: SubscriptionItem{
+						SubscriptionID: 1,
+						PriceID:        1,
+						Quantity:       5,
+						CreatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+						UpdatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+					},
 				},
 				Urls: SubscriptionURLs{
-					UpdatePaymentMethod: "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+					UpdatePaymentMethod: "https://my-store.lemonsqueezy.com/subscription/1/payment-details?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+					CustomerPortal:      "https://my-store.lemonsqueezy.com/billing?expires=1666869343&signature=82ae290ceac8edd4190c82825dd73a8743346d894a8ddbc4898b97eb96d105a5",
 				},
 				RenewsAt:  time.Date(2022, time.November, 12, 0, 0, 0, 0, time.UTC),
 				EndsAt:    nil,
@@ -171,7 +174,7 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionCancelResponse(), *response.Body)
 
-	assert.Equal(t, &ApiResponseSubscription{
+	assert.Equal(t, &SubscriptionApiResponse{
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
@@ -198,16 +201,19 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 				Cancelled:       true,
 				TrialEndsAt:     nil,
 				BillingAnchor:   12,
-				FirstSubscriptionItem: &SubscriptionItem{
-					ID:             1,
-					SubscriptionID: 1,
-					PriceID:        1,
-					Quantity:       5,
-					CreatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
-					UpdatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+				FirstSubscriptionItem: &SubscriptionFirstSubscriptionItem{
+					ID: 1,
+					SubscriptionItem: SubscriptionItem{
+						SubscriptionID: 1,
+						PriceID:        1,
+						Quantity:       5,
+						CreatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+						UpdatedAt:      time.Date(2021, time.August, 11, 13, 47, 28, 0, time.UTC),
+					},
 				},
 				Urls: SubscriptionURLs{
-					UpdatePaymentMethod: "https://app.lemonsqueezy.com/my-orders/2ba92a4e-a00a-45d2-a128-16856ffa8cdf/subscription/8/update-payment-method?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+					UpdatePaymentMethod: "https://my-store.lemonsqueezy.com/subscription/1/payment-details?expires=1666869343&signature=9985e3bf9007840aeb3951412be475abc17439c449c1af3e56e08e45e1345413",
+					CustomerPortal:      "https://my-store.lemonsqueezy.com/billing?expires=1666869343&signature=82ae290ceac8edd4190c82825dd73a8743346d894a8ddbc4898b97eb96d105a5",
 				},
 				RenewsAt: time.Date(2022, time.November, 12, 0, 0, 0, 0, time.UTC),
 				EndsAt: (func() *time.Time {
