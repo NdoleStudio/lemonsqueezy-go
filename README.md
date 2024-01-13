@@ -76,6 +76,10 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **License Key Instances**
   - `GET /v1/license-key-instances/:id`: Retrieve a license key instance
   - `GET /v1/license-key-instances`: List all license keys instance
+- **Licenses**
+  - `POST /v1/licenses/validate`: Validate a license
+  - `POST /v1/licenses/activate`: Activate a license
+  - `POST /v1/licenses/deactivate`: Deactivate a license
 - **Checkouts**
   - `POST /v1/checkouts`: Create a checkout
   - `GET /v1/checkouts/:id`: Retrieve a checkout
