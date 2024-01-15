@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"strconv"
 )
 
 // CheckoutsService is the API client for the `/v1/checkouts` endpoint
@@ -12,7 +13,7 @@ type CheckoutsService service
 // Create a custom checkout.
 //
 // https://docs.lemonsqueezy.com/api/checkouts#create-a-checkout
-func (service *CheckoutsService) Create(ctx context.Context, variantId string, storeId string, attributes *CheckoutCreateAttributes) (*CheckoutApiResponse, *Response, error) {
+func (service *CheckoutsService) Create(ctx context.Context, variantId int, storeId int, attributes *CheckoutCreateAttributes) (*CheckoutApiResponse, *Response, error) {
 	payload := map[string]any{
 		"data": map[string]any{
 			"type":       "checkouts",
@@ -20,13 +21,13 @@ func (service *CheckoutsService) Create(ctx context.Context, variantId string, s
 			"relationships": map[string]any{
 				"store": map[string]any{
 					"data": map[string]any{
-						"id":   storeId,
+						"id":   strconv.Itoa(storeId),
 						"type": "stores",
 					},
 				},
 				"variant": map[string]any{
 					"data": map[string]any{
-						"id":   variantId,
+						"id":   strconv.Itoa(variantId),
 						"type": "variants",
 					},
 				},

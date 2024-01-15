@@ -2,8 +2,8 @@ package e2e
 
 import (
 	"context"
-	"fmt"
 	"net/http"
+	"strconv"
 	"testing"
 	"time"
 
@@ -13,15 +13,16 @@ import (
 )
 
 func TestCheckoutsService_Create(t *testing.T) {
-	storeID := "11559"
+	storeID := 11559
+	variantId := 36096
 	expiresAt := time.Now().UTC().Add(time.Hour * 24)
 	customPrice := 5000
 
 	// Act
-	checkout, response, err := client.Checkouts.Create(context.Background(), storeID, "36096", &lemonsqueezy.CheckoutCreateAttributes{
+	checkout, response, err := client.Checkouts.Create(context.Background(), variantId, storeID, &lemonsqueezy.CheckoutCreateAttributes{
 		CustomPrice: &customPrice,
 		ProductOptions: lemonsqueezy.CheckoutCreateProductOptions{
-			EnabledVariants: []int{36096},
+			EnabledVariants: []int{variantId},
 		},
 		CheckoutOptions: lemonsqueezy.CheckoutCreateOptions{
 			ButtonColor: "#2DD272",
@@ -36,7 +37,7 @@ func TestCheckoutsService_Create(t *testing.T) {
 	assert.Nil(t, err)
 
 	assert.Equal(t, http.StatusCreated, response.HTTPResponse.StatusCode)
-	assert.Equal(t, storeID, fmt.Sprintf("%d", checkout.Data.Attributes.StoreID))
+	assert.Equal(t, storeID, strconv.Itoa(checkout.Data.Attributes.StoreID))
 }
 
 func TestCheckoutsService_Get(t *testing.T) {
