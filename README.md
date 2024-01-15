@@ -114,7 +114,7 @@ func main() {
 All API calls return an `error` as the last return object. All successful calls will return a `nil` error.
 
 ```go
-subscription, response, err := client.Sucbscriptions.Get(context.Background(), "1")
+subscription, response, err := client.Subscriptions.Get(context.Background(), "1")
 if err != nil {
     //handle error
 }
