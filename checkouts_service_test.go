@@ -6,9 +6,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/helpers"
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/stubs"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestCheckoutService_Create(t *testing.T) {
@@ -20,14 +21,20 @@ func TestCheckoutService_Create(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	checkout, response, err := client.Checkouts.Create(context.Background(), &CheckoutCreateParams{
-		CustomPrice:     5000,
-		EnabledVariants: []int{1},
-		ButtonColor:     "#2DD272",
-		CustomData:      map[string]string{"user_id": "123"},
-		ExpiresAt:       time.Now().UTC(),
-		StoreID:         "1",
-		VariantID:       "1",
+	expireAt := time.Now().UTC()
+	customPrice := 5000
+	checkout, response, err := client.Checkouts.Create(context.Background(), "1", "1", &CheckoutCreateAttributes{
+		CustomPrice: &customPrice,
+		ProductOptions: CheckoutCreateProductOptions{
+			EnabledVariants: []int{1},
+		},
+		CheckoutOptions: CheckoutCreateOptions{
+			ButtonColor: "2DD272",
+		},
+		CheckoutData: CheckoutCreateData{
+			Custom: map[string]any{"user_id": "123"},
+		},
+		ExpiresAt: &expireAt,
 	})
 
 	// Assert
@@ -50,7 +57,7 @@ func TestCheckoutService_CreateWithError(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	_, response, err := client.Checkouts.Create(context.Background(), &CheckoutCreateParams{})
+	_, response, err := client.Checkouts.Create(context.Background(), "1", "1", &CheckoutCreateAttributes{})
 
 	// Assert
 	assert.NotNil(t, err)

@@ -7,21 +7,29 @@ import (
 	"testing"
 	"time"
 
-	lemonsqueezy "github.com/NdoleStudio/lemonsqueezy-go"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/NdoleStudio/lemonsqueezy-go"
 )
 
 func TestCheckoutsService_Create(t *testing.T) {
-	// Act
 	storeID := "11559"
-	checkout, response, err := client.Checkouts.Create(context.Background(), &lemonsqueezy.CheckoutCreateParams{
-		CustomPrice:     5000,
-		EnabledVariants: []int{36096},
-		ButtonColor:     "#2DD272",
-		CustomData:      map[string]string{"user_id": "123"},
-		ExpiresAt:       time.Now().UTC().Add(time.Hour * 24),
-		StoreID:         storeID,
-		VariantID:       "36096",
+	expiresAt := time.Now().UTC().Add(time.Hour * 24)
+	customPrice := 5000
+
+	// Act
+	checkout, response, err := client.Checkouts.Create(context.Background(), storeID, "36096", &lemonsqueezy.CheckoutCreateAttributes{
+		CustomPrice: &customPrice,
+		ProductOptions: lemonsqueezy.CheckoutCreateProductOptions{
+			EnabledVariants: []int{36096},
+		},
+		CheckoutOptions: lemonsqueezy.CheckoutCreateOptions{
+			ButtonColor: "#2DD272",
+		},
+		CheckoutData: lemonsqueezy.CheckoutCreateData{
+			Custom: map[string]any{"user_id": "123"},
+		},
+		ExpiresAt: &expiresAt,
 	})
 
 	// Assert
