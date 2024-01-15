@@ -106,6 +106,9 @@ type CheckoutCreateData struct {
 }
 
 // CheckoutCreateOptions represents the checkout options for creating a checkout.
+//
+// Note: We use pointers for the boolean fields as otherwise, setting them to "false" would omit them, which would
+// break some of the boolean checks in the API. See: https://docs.lemonsqueezy.com/api/checkouts#create-a-checkout
 type CheckoutCreateOptions struct {
 	Embed               *bool  `json:"embed,omitempty"`
 	Media               *bool  `json:"media,omitempty"`
