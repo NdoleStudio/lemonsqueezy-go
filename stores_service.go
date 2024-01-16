@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"strconv"
 )
 
 // StoresService is the API client for the `/v1/stores` endpoint
@@ -12,8 +13,8 @@ type StoresService service
 // Get returns the store with the given ID.
 //
 // https://docs.lemonsqueezy.com/api/stores#retrieve-a-store
-func (service *StoresService) Get(ctx context.Context, storeID string) (*StoreApiResponse, *Response, error) {
-	response, err := service.client.do(ctx, http.MethodGet, "/v1/stores/"+storeID)
+func (service *StoresService) Get(ctx context.Context, storeID int) (*StoreApiResponse, *Response, error) {
+	response, err := service.client.do(ctx, http.MethodGet, "/v1/stores/"+strconv.Itoa(storeID))
 	if err != nil {
 		return nil, response, err
 	}

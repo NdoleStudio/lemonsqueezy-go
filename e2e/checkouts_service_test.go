@@ -2,33 +2,42 @@ package e2e
 
 import (
 	"context"
-	"fmt"
 	"net/http"
+	"strconv"
 	"testing"
 	"time"
 
-	lemonsqueezy "github.com/NdoleStudio/lemonsqueezy-go"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/NdoleStudio/lemonsqueezy-go"
 )
 
 func TestCheckoutsService_Create(t *testing.T) {
+	storeID := 11559
+	variantId := 36096
+	expiresAt := time.Now().UTC().Add(time.Hour * 24)
+	customPrice := 5000
+
 	// Act
-	storeID := "11559"
-	checkout, response, err := client.Checkouts.Create(context.Background(), &lemonsqueezy.CheckoutCreateParams{
-		CustomPrice:     5000,
-		EnabledVariants: []int{36096},
-		ButtonColor:     "#2DD272",
-		CustomData:      map[string]string{"user_id": "123"},
-		ExpiresAt:       time.Now().UTC().Add(time.Hour * 24),
-		StoreID:         storeID,
-		VariantID:       "36096",
+	checkout, response, err := client.Checkouts.Create(context.Background(), storeID, variantId, &lemonsqueezy.CheckoutCreateAttributes{
+		CustomPrice: &customPrice,
+		ProductOptions: lemonsqueezy.CheckoutCreateProductOptions{
+			EnabledVariants: []int{variantId},
+		},
+		CheckoutOptions: lemonsqueezy.CheckoutCreateOptions{
+			ButtonColor: "#2DD272",
+		},
+		CheckoutData: lemonsqueezy.CheckoutCreateData{
+			Custom: map[string]any{"user_id": "123"},
+		},
+		ExpiresAt: &expiresAt,
 	})
 
 	// Assert
 	assert.Nil(t, err)
 
 	assert.Equal(t, http.StatusCreated, response.HTTPResponse.StatusCode)
-	assert.Equal(t, storeID, fmt.Sprintf("%d", checkout.Data.Attributes.StoreID))
+	assert.Equal(t, storeID, strconv.Itoa(checkout.Data.Attributes.StoreID))
 }
 
 func TestCheckoutsService_Get(t *testing.T) {

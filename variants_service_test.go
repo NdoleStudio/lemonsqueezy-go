@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/helpers"
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/stubs"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestVariantsService_Get(t *testing.T) {
@@ -19,7 +20,7 @@ func TestVariantsService_Get(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	variant, response, err := client.Variants.Get(context.Background(), "1")
+	variant, response, err := client.Variants.Get(context.Background(), 1)
 
 	// Assert
 	assert.Nil(t, err)
@@ -41,7 +42,7 @@ func TestVariantsService_GetWithError(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	_, response, err := client.Variants.Get(context.Background(), "1")
+	_, response, err := client.Variants.Get(context.Background(), 1)
 
 	// Assert
 	assert.NotNil(t, err)

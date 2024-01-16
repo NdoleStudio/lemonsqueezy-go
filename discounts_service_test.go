@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/helpers"
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/stubs"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestDiscountsService_Create(t *testing.T) {
@@ -24,7 +25,7 @@ func TestDiscountsService_Create(t *testing.T) {
 		Code:       "10PERCENT",
 		Amount:     10,
 		AmountType: "percent",
-		StoreID:    "1",
+		StoreID:    1,
 	})
 
 	// Assert
@@ -52,7 +53,7 @@ func TestDiscountsService_CreateWithError(t *testing.T) {
 		Code:       "10PERCENT",
 		Amount:     10,
 		AmountType: "percent",
-		StoreID:    "1",
+		StoreID:    1,
 	})
 
 	// Assert

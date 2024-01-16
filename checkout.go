@@ -87,14 +87,58 @@ type CheckoutApiResponse = ApiResponse[CheckoutAttributes, ApiResponseRelationsh
 // CheckoutsApiResponse is the api response for a list of checkout.
 type CheckoutsApiResponse = ApiResponseList[CheckoutAttributes, ApiResponseRelationshipsDiscount]
 
-// CheckoutCreateParams are parameters for creating a checkout
-type CheckoutCreateParams struct {
-	CustomPrice     int               `json:"custom_price"`
-	EnabledVariants []int             `json:"enabled_variants"`
-	ButtonColor     string            `json:"button_color"`
-	DiscountCode    *string           `json:"discount_code"`
-	CustomData      map[string]string `json:"custom_data"`
-	ExpiresAt       time.Time         `json:"expires_at"`
-	StoreID         string            `json:"store_id"`
-	VariantID       string            `json:"variant_id"`
+// CheckoutCreateDataQuantity represents variant quantities when creating checkout
+type CheckoutCreateDataQuantity struct {
+	VariantId int `json:"variant_id"`
+	Quantity  int `json:"quantity"`
+}
+
+// CheckoutCreateData represents the data options for creating a checkout.
+type CheckoutCreateData struct {
+	Email                 string                       `json:"email,omitempty"`
+	Name                  string                       `json:"name,omitempty"`
+	BillingAddressCountry string                       `json:"billing_address.country,omitempty"`
+	BillingAddressZip     string                       `json:"billing_address.zip,omitempty"`
+	TaxNumber             string                       `json:"tax_number,omitempty"`
+	DiscountCode          string                       `json:"discount_code,omitempty"`
+	Custom                map[string]any               `json:"custom,omitempty"`
+	VariantQuantities     []CheckoutCreateDataQuantity `json:"variant_quantities,omitempty"`
+}
+
+// CheckoutCreateOptions represents the checkout options for creating a checkout.
+//
+// Note: We use pointers for the boolean fields as otherwise, setting them to "false" would omit them, which would
+// break some of the boolean checks in the API. See: https://docs.lemonsqueezy.com/api/checkouts#create-a-checkout
+type CheckoutCreateOptions struct {
+	Embed               *bool  `json:"embed,omitempty"`
+	Media               *bool  `json:"media,omitempty"`
+	Logo                *bool  `json:"logo,omitempty"`
+	Desc                *bool  `json:"desc,omitempty"`
+	Discount            *bool  `json:"discount,omitempty"`
+	Dark                *bool  `json:"dark,omitempty"`
+	SubscriptionPreview *bool  `json:"subscription_preview,omitempty"`
+	ButtonColor         string `json:"button_color,omitempty"`
+}
+
+// CheckoutCreateProductOptions represents product options for creating a checkout.
+type CheckoutCreateProductOptions struct {
+	Name                string   `json:"name,omitempty"`
+	Description         string   `json:"description,omitempty"`
+	Media               []string `json:"media,omitempty"`
+	RedirectUrl         string   `json:"redirect_url,omitempty"`
+	ReceiptButtonText   string   `json:"receipt_button_text,omitempty"`
+	ReceiptLinkUrl      string   `json:"receipt_link_url,omitempty"`
+	ReceiptThankYouNote string   `json:"receipt_thank_you_note,omitempty"`
+	EnabledVariants     []int    `json:"enabled_variants,omitempty"`
+}
+
+// CheckoutCreateAttributes represents individual parameters for creating a checkout.
+type CheckoutCreateAttributes struct {
+	CustomPrice     *int                         `json:"custom_price,omitempty"`
+	ProductOptions  CheckoutCreateProductOptions `json:"product_options,omitempty"`
+	CheckoutOptions CheckoutCreateOptions        `json:"checkout_options,omitempty"`
+	CheckoutData    CheckoutCreateData           `json:"checkout_data,omitempty"`
+	Preview         *bool                        `json:"preview,omitempty"`
+	TestMode        *bool                        `json:"test_mode,omitempty"`
+	ExpiresAt       *time.Time                   `json:"expires_at,omitempty"`
 }

@@ -12,7 +12,7 @@ func TestStoreService_Get(t *testing.T) {
 	// Setup
 	t.Parallel()
 
-	store, response, err := client.Stores.Get(context.Background(), "11559")
+	store, response, err := client.Stores.Get(context.Background(), 11559)
 
 	// Assert
 	assert.Nil(t, err)
