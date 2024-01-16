@@ -4,10 +4,9 @@ import "time"
 
 // WebhookCreateParams are parameters for creating a webhook
 type WebhookCreateParams struct {
-	URL     string   `json:"url"`
-	Events  []string `json:"events"`
-	Secret  string   `json:"secret"`
-	StoreID string   `json:"store_id"`
+	URL    string   `json:"url"`
+	Events []string `json:"events"`
+	Secret string   `json:"secret"`
 }
 
 // WebhookUpdateParams are parameters for updating a webhook

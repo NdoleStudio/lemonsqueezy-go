@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"strconv"
 )
 
 // DiscountsService is the API client for the `/v1/discounts` endpoint
@@ -26,7 +27,7 @@ func (service *DiscountsService) Create(ctx context.Context, params *DiscountCre
 				"store": map[string]any{
 					"data": map[string]any{
 						"type": "stores",
-						"id":   params.StoreID,
+						"id":   strconv.Itoa(params.StoreID),
 					},
 				},
 			},

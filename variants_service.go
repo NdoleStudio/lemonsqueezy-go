@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"strconv"
 )
 
 // VariantsService is the API client for the `/v1/variants` endpoint
@@ -12,8 +13,8 @@ type VariantsService service
 // Get returns the variant with the given ID.
 //
 // https://docs.lemonsqueezy.com/api/variants#retrieve-a-variant
-func (service *VariantsService) Get(ctx context.Context, variantID string) (*VariantApiResponse, *Response, error) {
-	response, err := service.client.do(ctx, http.MethodGet, "/v1/variants/"+variantID)
+func (service *VariantsService) Get(ctx context.Context, variantID int) (*VariantApiResponse, *Response, error) {
+	response, err := service.client.do(ctx, http.MethodGet, "/v1/variants/"+strconv.Itoa(variantID))
 	if err != nil {
 		return nil, response, err
 	}

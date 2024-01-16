@@ -13,7 +13,7 @@ type CheckoutsService service
 // Create a custom checkout.
 //
 // https://docs.lemonsqueezy.com/api/checkouts#create-a-checkout
-func (service *CheckoutsService) Create(ctx context.Context, variantId int, storeId int, attributes *CheckoutCreateAttributes) (*CheckoutApiResponse, *Response, error) {
+func (service *CheckoutsService) Create(ctx context.Context, storeId int, variantId int, attributes *CheckoutCreateAttributes) (*CheckoutApiResponse, *Response, error) {
 	payload := map[string]any{
 		"data": map[string]any{
 			"type":       "checkouts",

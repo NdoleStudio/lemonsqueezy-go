@@ -12,7 +12,7 @@ import (
 
 func TestVariantsService_Get(t *testing.T) {
 	// Act
-	variant, response, err := client.Variants.Get(context.Background(), "36095")
+	variant, response, err := client.Variants.Get(context.Background(), 36095)
 
 	// Assert
 	assert.Nil(t, err)

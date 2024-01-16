@@ -41,5 +41,5 @@ type DiscountCreateParams struct {
 	Code       string `json:"code"`
 	Amount     int    `json:"amount"`
 	AmountType string `json:"amountType"`
-	StoreID    string `json:"storeID"`
+	StoreID    int    `json:"storeID"`
 }

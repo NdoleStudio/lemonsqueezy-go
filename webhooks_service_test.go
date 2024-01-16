@@ -7,8 +7,9 @@ import (
 
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/helpers"
 
-	"github.com/NdoleStudio/lemonsqueezy-go/internal/stubs"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/NdoleStudio/lemonsqueezy-go/internal/stubs"
 )
 
 func TestWebhooksService_Verify(t *testing.T) {
@@ -32,11 +33,10 @@ func TestWebhooksService_Create(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	webhook, response, err := client.Webhooks.Create(context.Background(), &WebhookCreateParams{
-		URL:     "https://mysite.com/webhooks/",
-		Events:  []string{"order_created", "subscription_created"},
-		Secret:  "SIGNING_SECRET",
-		StoreID: "1",
+	webhook, response, err := client.Webhooks.Create(context.Background(), 1, &WebhookCreateParams{
+		URL:    "https://mysite.com/webhooks/",
+		Events: []string{"order_created", "subscription_created"},
+		Secret: "SIGNING_SECRET",
 	})
 
 	// Assert
@@ -59,11 +59,10 @@ func TestWebhooksService_CreateWithError(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	_, response, err := client.Webhooks.Create(context.Background(), &WebhookCreateParams{
-		URL:     "https://mysite.com/webhooks/",
-		Events:  []string{"order_created", "subscription_created"},
-		Secret:  "SIGNING_SECRET",
-		StoreID: "1",
+	_, response, err := client.Webhooks.Create(context.Background(), 1, &WebhookCreateParams{
+		URL:    "https://mysite.com/webhooks/",
+		Events: []string{"order_created", "subscription_created"},
+		Secret: "SIGNING_SECRET",
 	})
 
 	// Assert

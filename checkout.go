@@ -87,22 +87,22 @@ type CheckoutApiResponse = ApiResponse[CheckoutAttributes, ApiResponseRelationsh
 // CheckoutsApiResponse is the api response for a list of checkout.
 type CheckoutsApiResponse = ApiResponseList[CheckoutAttributes, ApiResponseRelationshipsDiscount]
 
-// Quantities represents variant quantities when creating checkout
-type Quantities struct {
+// CheckoutCreateDataQuantity represents variant quantities when creating checkout
+type CheckoutCreateDataQuantity struct {
 	VariantId int `json:"variant_id"`
 	Quantity  int `json:"quantity"`
 }
 
 // CheckoutCreateData represents the data options for creating a checkout.
 type CheckoutCreateData struct {
-	Email                 string         `json:"email,omitempty"`
-	Name                  string         `json:"name,omitempty"`
-	BillingAddressCountry string         `json:"billing_address.country,omitempty"`
-	BillingAddressZip     string         `json:"billing_address.zip,omitempty"`
-	TaxNumber             string         `json:"tax_number,omitempty"`
-	DiscountCode          string         `json:"discount_code,omitempty"`
-	Custom                map[string]any `json:"custom,omitempty"`
-	VariantQuantities     []Quantities   `json:"variant_quantities,omitempty"`
+	Email                 string                       `json:"email,omitempty"`
+	Name                  string                       `json:"name,omitempty"`
+	BillingAddressCountry string                       `json:"billing_address.country,omitempty"`
+	BillingAddressZip     string                       `json:"billing_address.zip,omitempty"`
+	TaxNumber             string                       `json:"tax_number,omitempty"`
+	DiscountCode          string                       `json:"discount_code,omitempty"`
+	Custom                map[string]any               `json:"custom,omitempty"`
+	VariantQuantities     []CheckoutCreateDataQuantity `json:"variant_quantities,omitempty"`
 }
 
 // CheckoutCreateOptions represents the checkout options for creating a checkout.

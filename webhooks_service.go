@@ -7,6 +7,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"net/http"
+	"strconv"
 )
 
 // WebhooksService is the used to verify the signature in webhook requests
@@ -25,7 +26,7 @@ func (service *WebhooksService) Verify(_ context.Context, signature string, body
 // Create a webhook.
 //
 // https://docs.lemonsqueezy.com/api/webhooks#create-a-webhook
-func (service *WebhooksService) Create(ctx context.Context, params *WebhookCreateParams) (*WebhookApiResponse, *Response, error) {
+func (service *WebhooksService) Create(ctx context.Context, storeId int, params *WebhookCreateParams) (*WebhookApiResponse, *Response, error) {
 	payload := map[string]any{
 		"data": map[string]any{
 			"type": "webhooks",
@@ -38,7 +39,7 @@ func (service *WebhooksService) Create(ctx context.Context, params *WebhookCreat
 				"store": map[string]any{
 					"data": map[string]any{
 						"type": "stores",
-						"id":   params.StoreID,
+						"id":   strconv.Itoa(storeId),
 					},
 				},
 			},

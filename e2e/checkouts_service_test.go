@@ -19,7 +19,7 @@ func TestCheckoutsService_Create(t *testing.T) {
 	customPrice := 5000
 
 	// Act
-	checkout, response, err := client.Checkouts.Create(context.Background(), variantId, storeID, &lemonsqueezy.CheckoutCreateAttributes{
+	checkout, response, err := client.Checkouts.Create(context.Background(), storeID, variantId, &lemonsqueezy.CheckoutCreateAttributes{
 		CustomPrice: &customPrice,
 		ProductOptions: lemonsqueezy.CheckoutCreateProductOptions{
 			EnabledVariants: []int{variantId},
