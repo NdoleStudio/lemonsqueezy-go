@@ -123,14 +123,14 @@ if err != nil {
 ### WebHooks
 
 Webhooks allow Lemon Squeezy to send new data to your application when certain events occur inside your store.
-You can use the sample code below to create a basic `http.HandlerFunc` which processes webhook events on your go server.
+You can use the sample code below as inspiration for a basic `http.HandlerFunc` which processes webhook events on your server.
 
 ```go
 func WebhookHandler(_ http.ResponseWriter, req *http.Request) {
 
-	// 1. Authenticate the webhook request from  Lemon Squeezy using the `X-Signature` header
+	// 1. Authenticate the webhook request from Lemon Squeezy using the `X-Signature` header
 
-	// 2. Process the payload if the request is valid
+	// 2. Process the payload if the request is authenticated
 	eventName := req.Header.Get("X-Event-Name")
 	payload, err := io.ReadAll(req.Body)
 	if err != nil {
