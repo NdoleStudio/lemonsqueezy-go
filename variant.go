@@ -27,17 +27,18 @@ type VariantAttributes struct {
 	Sort                     int       `json:"sort"`
 	Status                   string    `json:"status"`
 	StatusFormatted          string    `json:"status_formatted"`
+	TestMode                 bool      `json:"test_mode"`
 	CreatedAt                time.Time `json:"created_at"`
 	UpdatedAt                time.Time `json:"updated_at"`
 }
 
-// ApiResponseRelationshipsVariant relationships of a variant
-type ApiResponseRelationshipsVariant struct {
+// APIResponseRelationshipsVariant relationships of a variant
+type APIResponseRelationshipsVariant struct {
 	Product ApiResponseLinks `json:"product"`
 }
 
-// VariantApiResponse is the api response for one variant
-type VariantApiResponse = ApiResponse[VariantAttributes, ApiResponseRelationshipsVariant]
+// VariantAPIResponse is the api response for one variant
+type VariantAPIResponse = ApiResponse[VariantAttributes, APIResponseRelationshipsVariant]
 
-// VariantsApiResponse is the api response for a list of variants.
-type VariantsApiResponse = ApiResponseList[VariantAttributes, ApiResponseRelationshipsVariant]
+// VariantsAPIResponse is the api response for a list of variants.
+type VariantsAPIResponse = ApiResponseList[VariantAttributes, APIResponseRelationshipsVariant]

@@ -38,7 +38,8 @@ func VariantGetResponse() []byte {
       "status": "published",
       "status_formatted": "Published",
       "created_at": "2021-05-24T14:15:06.000000Z",
-      "updated_at": "2021-06-24T14:44:38.000000Z"
+      "updated_at": "2021-06-24T14:44:38.000000Z",
+      "test_mode": false
     },
     "relationships": {
       "product": {
@@ -106,7 +107,8 @@ func VariantsListResponse() []byte {
         "status": "published",
         "status_formatted": "Published",
         "created_at": "2021-05-24T14:15:06.000000Z",
-        "updated_at": "2021-06-24T14:44:38.000000Z"
+        "updated_at": "2021-06-24T14:44:38.000000Z",
+        "test_mode": false
       },
       "relationships": {
         "product": {
@@ -148,7 +150,8 @@ func VariantsListResponse() []byte {
         "status": "published",
         "status_formatted": "Published",
         "created_at": "2021-05-24T14:15:06.000000Z",
-        "updated_at": "2021-06-24T14:44:38.000000Z"
+        "updated_at": "2021-06-24T14:44:38.000000Z",
+        "test_mode": false
       },
       "relationships": {
         "product": {
