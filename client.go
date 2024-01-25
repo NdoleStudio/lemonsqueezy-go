@@ -39,6 +39,7 @@ type Client struct {
 	LicenseKeys          *LicenseKeysService
 	LicenseKeyInstances  *LicenseKeyInstancesService
 	Licenses             *LicensesService
+	Prices               *PricesService
 }
 
 // New creates and returns a new Client from a slice of Option.
@@ -75,6 +76,7 @@ func New(options ...Option) *Client {
 	client.LicenseKeys = (*LicenseKeysService)(&client.common)
 	client.LicenseKeyInstances = (*LicenseKeyInstancesService)(&client.common)
 	client.Licenses = (*LicensesService)(&client.common)
+	client.Prices = (*PricesService)(&client.common)
 
 	return client
 }

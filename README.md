@@ -40,6 +40,9 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Variants**
   - `GET /v1/variants/:id`: Retrieve a variant
   - `GET /v1/variants`: List all variants
+- **Prices**
+  - `GET /v1/prices/:id`: Retrieve a price
+  - `GET /v1/prices`: List all prices
 - **Files**
   - `GET /v1/files/:id`: Retrieve a file
   - `GET /v1/files`: List all files
