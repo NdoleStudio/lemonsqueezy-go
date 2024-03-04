@@ -21,7 +21,7 @@ type OrderAttributes struct {
 	TaxUsd                 int        `json:"tax_usd"`
 	TotalUsd               int        `json:"total_usd"`
 	TaxName                string     `json:"tax_name"`
-	TaxRate                string     `json:"tax_rate"`
+	TaxRate                any        `json:"tax_rate"`
 	Status                 string     `json:"status"`
 	StatusFormatted        string     `json:"status_formatted"`
 	Refunded               bool       `json:"refunded"`
@@ -49,8 +49,8 @@ type OrderAttributes struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// ApiResponseRelationshipsOrder relationships of an order
-type ApiResponseRelationshipsOrder struct {
+// APIResponseRelationshipsOrder relationships of an order
+type APIResponseRelationshipsOrder struct {
 	Store               ApiResponseLinks `json:"store"`
 	Customer            ApiResponseLinks `json:"customer"`
 	OrderItems          ApiResponseLinks `json:"order-items"`
@@ -59,8 +59,8 @@ type ApiResponseRelationshipsOrder struct {
 	DiscountRedemptions ApiResponseLinks `json:"discount-redemptions"`
 }
 
-// OrderApiResponse is the api response for one order
-type OrderApiResponse = ApiResponse[OrderAttributes, ApiResponseRelationshipsOrder]
+// OrderAPIResponse is the api response for one order
+type OrderAPIResponse = ApiResponse[OrderAttributes, APIResponseRelationshipsOrder]
 
-// OrdersApiResponse is the api response for a list of orders.
-type OrdersApiResponse = ApiResponseList[OrderAttributes, ApiResponseRelationshipsOrder]
+// OrdersAPIResponse is the api response for a list of orders.
+type OrdersAPIResponse = ApiResponseList[OrderAttributes, APIResponseRelationshipsOrder]

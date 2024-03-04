@@ -1,7 +1,7 @@
 package lemonsqueezy
 
 // WebhookRequestOrder is the payload for order related events e.g. order_created, order_refunded
-type WebhookRequestOrder WebhookRequest[OrderAttributes, ApiResponseRelationshipsOrder]
+type WebhookRequestOrder WebhookRequest[OrderAttributes, APIResponseRelationshipsOrder]
 
 // WebhookRequestSubscription is the payload for subscription related events e.g. subscription_created, subscription_updated
 type WebhookRequestSubscription WebhookRequest[Subscription, ApiResponseRelationshipsSubscription]

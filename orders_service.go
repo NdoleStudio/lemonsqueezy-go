@@ -12,13 +12,13 @@ type OrdersService service
 // Get returns the order with the given ID.
 //
 // https://docs.lemonsqueezy.com/api/orders#retrieve-an-order
-func (service *OrdersService) Get(ctx context.Context, orderID string) (*OrderApiResponse, *Response, error) {
+func (service *OrdersService) Get(ctx context.Context, orderID string) (*OrderAPIResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/orders/"+orderID)
 	if err != nil {
 		return nil, response, err
 	}
 
-	order := new(OrderApiResponse)
+	order := new(OrderAPIResponse)
 	if err = json.Unmarshal(*response.Body, order); err != nil {
 		return nil, response, err
 	}
@@ -29,13 +29,13 @@ func (service *OrdersService) Get(ctx context.Context, orderID string) (*OrderAp
 // List returns a paginated list of orders.
 //
 // https://docs.lemonsqueezy.com/api/orders#list-all-orders
-func (service *OrdersService) List(ctx context.Context) (*OrdersApiResponse, *Response, error) {
+func (service *OrdersService) List(ctx context.Context) (*OrdersAPIResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/orders")
 	if err != nil {
 		return nil, response, err
 	}
 
-	orders := new(OrdersApiResponse)
+	orders := new(OrdersAPIResponse)
 	if err = json.Unmarshal(*response.Body, orders); err != nil {
 		return nil, response, err
 	}

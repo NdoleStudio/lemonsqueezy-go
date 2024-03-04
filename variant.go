@@ -8,7 +8,7 @@ type VariantAttributes struct {
 	Name                     string    `json:"name"`
 	Slug                     string    `json:"slug"`
 	Description              string    `json:"description"`
-	Price                    int       `json:"price"`
+	Price                    any       `json:"price"`
 	IsSubscription           bool      `json:"is_subscription"`
 	Interval                 *string   `json:"interval"`
 	IntervalCount            *int      `json:"interval_count"`
