@@ -12,7 +12,7 @@ type ProductAttributes struct {
 	StatusFormatted string    `json:"status_formatted"`
 	ThumbURL        string    `json:"thumb_url"`
 	LargeThumbURL   string    `json:"large_thumb_url"`
-	Price           int       `json:"price"`
+	Price           string    `json:"price"`
 	PayWhatYouWant  bool      `json:"pay_what_you_want"`
 	FromPrice       *int      `json:"from_price"`
 	ToPrice         *int      `json:"to_price"`
