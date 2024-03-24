@@ -54,7 +54,7 @@ type CheckoutData struct {
 	BillingAddress []BillingAddress `json:"billing_address"`
 	TaxNumber      string           `json:"tax_number"`
 	DiscountCode   string           `json:"discount_code"`
-	Custom         map[string]any   `json:"custom"`
+	Custom         any              `json:"custom"`
 }
 
 // CheckoutPreview contains information about a percentage or amount discount that can be applied to an order at checkout via a code.
@@ -75,21 +75,21 @@ type CheckoutPreview struct {
 	TotalFormatted         string `json:"total_formatted"`
 }
 
-// ApiResponseRelationshipsCheckout relationships of a checkout
-type ApiResponseRelationshipsCheckout struct {
+// APIResponseRelationshipsCheckout relationships of a checkout
+type APIResponseRelationshipsCheckout struct {
 	Store   ApiResponseLinks `json:"store"`
 	Variant ApiResponseLinks `json:"variant"`
 }
 
-// CheckoutApiResponse is the api response for one checkout
-type CheckoutApiResponse = ApiResponse[CheckoutAttributes, ApiResponseRelationshipsDiscount]
+// CheckoutAPIResponse is the api response for one checkout
+type CheckoutAPIResponse = ApiResponse[CheckoutAttributes, APIResponseRelationshipsDiscount]
 
-// CheckoutsApiResponse is the api response for a list of checkout.
-type CheckoutsApiResponse = ApiResponseList[CheckoutAttributes, ApiResponseRelationshipsDiscount]
+// CheckoutsAPIResponse is the api response for a list of checkout.
+type CheckoutsAPIResponse = ApiResponseList[CheckoutAttributes, APIResponseRelationshipsDiscount]
 
 // CheckoutCreateDataQuantity represents variant quantities when creating checkout
 type CheckoutCreateDataQuantity struct {
-	VariantId int `json:"variant_id"`
+	VariantID int `json:"variant_id"`
 	Quantity  int `json:"quantity"`
 }
 
@@ -125,9 +125,9 @@ type CheckoutCreateProductOptions struct {
 	Name                string   `json:"name,omitempty"`
 	Description         string   `json:"description,omitempty"`
 	Media               []string `json:"media,omitempty"`
-	RedirectUrl         string   `json:"redirect_url,omitempty"`
+	RedirectURL         string   `json:"redirect_url,omitempty"`
 	ReceiptButtonText   string   `json:"receipt_button_text,omitempty"`
-	ReceiptLinkUrl      string   `json:"receipt_link_url,omitempty"`
+	ReceiptLinkURL      string   `json:"receipt_link_url,omitempty"`
 	ReceiptThankYouNote string   `json:"receipt_thank_you_note,omitempty"`
 	EnabledVariants     []int    `json:"enabled_variants,omitempty"`
 }
@@ -140,5 +140,5 @@ type CheckoutCreateAttributes struct {
 	CheckoutData    CheckoutCreateData           `json:"checkout_data,omitempty"`
 	Preview         *bool                        `json:"preview,omitempty"`
 	TestMode        *bool                        `json:"test_mode,omitempty"`
-	ExpiresAt       *time.Time                   `json:"expires_at,omitempty"`
+	ExpiresAt       *string                      `json:"expires_at,omitempty"`
 }

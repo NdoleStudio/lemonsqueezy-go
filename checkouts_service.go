@@ -13,7 +13,7 @@ type CheckoutsService service
 // Create a custom checkout.
 //
 // https://docs.lemonsqueezy.com/api/checkouts#create-a-checkout
-func (service *CheckoutsService) Create(ctx context.Context, storeId int, variantId int, attributes *CheckoutCreateAttributes) (*CheckoutApiResponse, *Response, error) {
+func (service *CheckoutsService) Create(ctx context.Context, storeID int, variantID int, attributes *CheckoutCreateAttributes) (*CheckoutAPIResponse, *Response, error) {
 	payload := map[string]any{
 		"data": map[string]any{
 			"type":       "checkouts",
@@ -21,13 +21,13 @@ func (service *CheckoutsService) Create(ctx context.Context, storeId int, varian
 			"relationships": map[string]any{
 				"store": map[string]any{
 					"data": map[string]any{
-						"id":   strconv.Itoa(storeId),
+						"id":   strconv.Itoa(storeID),
 						"type": "stores",
 					},
 				},
 				"variant": map[string]any{
 					"data": map[string]any{
-						"id":   strconv.Itoa(variantId),
+						"id":   strconv.Itoa(variantID),
 						"type": "variants",
 					},
 				},
@@ -40,7 +40,7 @@ func (service *CheckoutsService) Create(ctx context.Context, storeId int, varian
 		return nil, response, err
 	}
 
-	checkout := new(CheckoutApiResponse)
+	checkout := new(CheckoutAPIResponse)
 	if err = json.Unmarshal(*response.Body, checkout); err != nil {
 		return nil, response, err
 	}
@@ -51,13 +51,13 @@ func (service *CheckoutsService) Create(ctx context.Context, storeId int, varian
 // Get the checkout with the given ID.
 //
 // https://docs.lemonsqueezy.com/api/checkouts#retrieve-a-checkout
-func (service *CheckoutsService) Get(ctx context.Context, checkoutID string) (*CheckoutApiResponse, *Response, error) {
+func (service *CheckoutsService) Get(ctx context.Context, checkoutID string) (*CheckoutAPIResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/checkouts/"+checkoutID)
 	if err != nil {
 		return nil, response, err
 	}
 
-	checkout := new(CheckoutApiResponse)
+	checkout := new(CheckoutAPIResponse)
 	if err = json.Unmarshal(*response.Body, checkout); err != nil {
 		return nil, response, err
 	}
@@ -68,13 +68,13 @@ func (service *CheckoutsService) Get(ctx context.Context, checkoutID string) (*C
 // List returns a paginated list of checkouts.
 //
 // https://docs.lemonsqueezy.com/api/checkouts#list-all-checkouts
-func (service *CheckoutsService) List(ctx context.Context) (*CheckoutsApiResponse, *Response, error) {
+func (service *CheckoutsService) List(ctx context.Context) (*CheckoutsAPIResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/checkouts")
 	if err != nil {
 		return nil, response, err
 	}
 
-	checkouts := new(CheckoutsApiResponse)
+	checkouts := new(CheckoutsAPIResponse)
 	if err = json.Unmarshal(*response.Body, checkouts); err != nil {
 		return nil, response, err
 	}

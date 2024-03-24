@@ -13,7 +13,7 @@ type DiscountsService service
 // Create a discount.
 //
 // https://docs.lemonsqueezy.com/api/discounts#create-a-discount
-func (service *DiscountsService) Create(ctx context.Context, params *DiscountCreateParams) (*DiscountApiResponse, *Response, error) {
+func (service *DiscountsService) Create(ctx context.Context, params *DiscountCreateParams) (*DiscountAPIResponse, *Response, error) {
 	payload := map[string]any{
 		"data": map[string]any{
 			"type": "discounts",
@@ -39,7 +39,7 @@ func (service *DiscountsService) Create(ctx context.Context, params *DiscountCre
 		return nil, response, err
 	}
 
-	discount := new(DiscountApiResponse)
+	discount := new(DiscountAPIResponse)
 	if err = json.Unmarshal(*response.Body, discount); err != nil {
 		return nil, response, err
 	}
@@ -50,13 +50,13 @@ func (service *DiscountsService) Create(ctx context.Context, params *DiscountCre
 // Get the discount with the given ID.
 //
 // https://docs.lemonsqueezy.com/api/discounts#retrieve-a-discount
-func (service *DiscountsService) Get(ctx context.Context, discountID string) (*DiscountApiResponse, *Response, error) {
+func (service *DiscountsService) Get(ctx context.Context, discountID string) (*DiscountAPIResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/discounts/"+discountID)
 	if err != nil {
 		return nil, response, err
 	}
 
-	discount := new(DiscountApiResponse)
+	discount := new(DiscountAPIResponse)
 	if err = json.Unmarshal(*response.Body, discount); err != nil {
 		return nil, response, err
 	}
@@ -74,13 +74,13 @@ func (service *DiscountsService) Delete(ctx context.Context, discountID string) 
 // List returns a paginated list of discounts.
 //
 // https://docs.lemonsqueezy.com/api/discounts#list-all-discounts
-func (service *DiscountsService) List(ctx context.Context) (*DiscountsApiResponse, *Response, error) {
+func (service *DiscountsService) List(ctx context.Context) (*DiscountsAPIResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/discounts")
 	if err != nil {
 		return nil, response, err
 	}
 
-	discounts := new(DiscountsApiResponse)
+	discounts := new(DiscountsAPIResponse)
 	if err = json.Unmarshal(*response.Body, discounts); err != nil {
 		return nil, response, err
 	}

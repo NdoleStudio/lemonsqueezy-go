@@ -22,18 +22,18 @@ type DiscountAttributes struct {
 	UpdatedAt            time.Time  `json:"updated_at"`
 }
 
-// ApiResponseRelationshipsDiscount relationships of a discount
-type ApiResponseRelationshipsDiscount struct {
+// APIResponseRelationshipsDiscount relationships of a discount
+type APIResponseRelationshipsDiscount struct {
 	Store               ApiResponseLinks `json:"store"`
 	DiscountRedemptions ApiResponseLinks `json:"discount-redemptions"`
 	Variants            ApiResponseLinks `json:"variants"`
 }
 
-// DiscountApiResponse is the api response for one discount
-type DiscountApiResponse = ApiResponse[DiscountAttributes, ApiResponseRelationshipsDiscount]
+// DiscountAPIResponse is the api response for one discount
+type DiscountAPIResponse = ApiResponse[DiscountAttributes, APIResponseRelationshipsDiscount]
 
-// DiscountsApiResponse is the api response for a list of discounts.
-type DiscountsApiResponse = ApiResponseList[DiscountAttributes, ApiResponseRelationshipsDiscount]
+// DiscountsAPIResponse is the api response for a list of discounts.
+type DiscountsAPIResponse = ApiResponseList[DiscountAttributes, APIResponseRelationshipsDiscount]
 
 // DiscountCreateParams are parameters for creating a discount
 type DiscountCreateParams struct {
