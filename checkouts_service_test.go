@@ -21,7 +21,7 @@ func TestCheckoutService_Create(t *testing.T) {
 	client := New(WithBaseURL(server.URL))
 
 	// Act
-	expireAt := time.Now().UTC()
+	expireAt := time.Now().UTC().Format(time.RFC3339)
 	customPrice := 5000
 	checkout, response, err := client.Checkouts.Create(context.Background(), 1, 1, &CheckoutCreateAttributes{
 		CustomPrice: &customPrice,
