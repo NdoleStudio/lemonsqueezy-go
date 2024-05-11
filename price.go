@@ -39,7 +39,7 @@ type APIResponseRelationshipsPrice struct {
 }
 
 // PriceAPIResponse is the api response for one variant
-type PriceAPIResponse = ApiResponse[VariantAttributes, APIResponseRelationshipsPrice]
+type PriceAPIResponse = ApiResponse[PriceAttributes, APIResponseRelationshipsPrice]
 
 // PricesAPIResponse is the api response for a list of variants.
-type PricesAPIResponse = ApiResponseList[VariantAttributes, APIResponseRelationshipsPrice]
+type PricesAPIResponse = ApiResponseList[PriceAttributes, APIResponseRelationshipsPrice]
