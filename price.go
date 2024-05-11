@@ -27,10 +27,10 @@ type PriceAttributes struct {
 
 // PriceAttributesTiers is list of pricing tier objects when using volume and graduated pricing.
 type PriceAttributesTiers struct {
-	LastUnit         int `json:"last_unit"`
-	UnitPrice        int `json:"unit_price"`
-	UnitPriceDecimal any `json:"unit_price_decimal"`
-	FixedFee         int `json:"fixed_fee"`
+	LastUnit         any     `json:"last_unit"`
+	UnitPrice        int     `json:"unit_price"`
+	UnitPriceDecimal *string `json:"unit_price_decimal"`
+	FixedFee         int     `json:"fixed_fee"`
 }
 
 // APIResponseRelationshipsPrice relationships of a variant
