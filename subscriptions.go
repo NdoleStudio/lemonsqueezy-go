@@ -6,6 +6,7 @@ import "time"
 // https://docs.lemonsqueezy.com/api/subscriptions#the-subscription-object
 type Subscription struct {
 	StoreID               int                                `json:"store_id"`
+	SubscriptionID        int                                `json:"subscription_id"`
 	CustomerID            int                                `json:"customer_id"`
 	OrderID               int                                `json:"order_id"`
 	OrderItemID           int                                `json:"order_item_id"`
