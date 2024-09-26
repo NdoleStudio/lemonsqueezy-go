@@ -15,6 +15,7 @@ func SubscriptionGetResponse() []byte {
     "id": "1",
     "attributes": {
       "store_id": 1,
+      "subscription_id": 1,
       "customer_id": 1,
       "order_id": 1,
       "order_item_id": 1,
@@ -387,6 +388,7 @@ func SubscriptionCancelResponse() []byte {
     "id": "1",
     "attributes": {
       "store_id": 1,
+      "subscription_id": 1,
       "customer_id": 1,
       "order_id": 1,
       "order_item_id": 1,
