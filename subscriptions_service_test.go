@@ -40,6 +40,7 @@ func TestSubscriptionsService_Get(t *testing.T) {
 			ID:   "1",
 			Attributes: Subscription{
 				StoreID:         1,
+				SubscriptionID:  1,
 				CustomerID:      1,
 				OrderID:         1,
 				OrderItemID:     1,
@@ -186,6 +187,7 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 			ID:   "1",
 			Attributes: Subscription{
 				StoreID:         1,
+				SubscriptionID:  1,
 				CustomerID:      1,
 				OrderID:         1,
 				OrderItemID:     1,
