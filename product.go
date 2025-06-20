@@ -35,3 +35,5 @@ type ProductApiResponse = ApiResponse[ProductAttributes, ApiResponseRelationship
 
 // ProductsApiResponse represents a list of products api responses.
 type ProductsApiResponse = ApiResponseList[ProductAttributes, ApiResponseRelationshipsProduct]
+
+type ProductsWithVariantsApiResponse = ApiResponseListWithIncluded[ProductAttributes, ApiResponseRelationshipsProduct, VariantAttributes]

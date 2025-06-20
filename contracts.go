@@ -22,6 +22,15 @@ type ApiResponseList[T any, R any] struct {
 	Data    []ApiResponseData[T, R] `json:"data"`
 }
 
+// ApiResponseListWithIncluded represents an API response with a list of items and included resources
+type ApiResponseListWithIncluded[T any, R any, I any] struct {
+	Jsonapi  ApiResponseJSONAPI                       `json:"jsonapi"`
+	Links    ApiResponseListLink                      `json:"links"`
+	Meta     ApiResponseListMeta                      `json:"meta"`
+	Data     []ApiResponseData[T, R]                  `json:"data"`
+	Included []ApiResponseDataWithoutRelationships[I] `json:"included"`
+}
+
 // ApiResponseDataWithoutRelationships contains the api response data without any relationships
 type ApiResponseDataWithoutRelationships[T any] struct {
 	Type       string              `json:"type"`
@@ -37,6 +46,16 @@ type ApiResponseData[T any, R any] struct {
 	Attributes    T                   `json:"attributes"`
 	Relationships R                   `json:"relationships"`
 	Links         ApiResponseSelfLink `json:"links"`
+}
+
+// ApiResponseDataWithIncluded contains the api response data with included resources
+type ApiResponseDataWithIncluded[T any, R any, I any] struct {
+	Type          string                                   `json:"type"`
+	ID            string                                   `json:"id"`
+	Attributes    T                                        `json:"attributes"`
+	Relationships R                                        `json:"relationships"`
+	Links         ApiResponseSelfLink                      `json:"links"`
+	Included      []ApiResponseDataWithoutRelationships[I] `json:"included"`
 }
 
 // Resource returns a lemonsqueezy resource. It's similar to ApiResponseData but without the links
@@ -72,6 +91,7 @@ type ApiResponseListLink struct {
 	First string  `json:"first"`
 	Last  string  `json:"last"`
 	Next  *string `json:"next"`
+	Prev  *string `json:"prev"`
 }
 
 // ApiResponseListMeta defines the meta data for a list api response
