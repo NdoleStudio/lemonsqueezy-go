@@ -24,7 +24,7 @@ func TestSubscriptionInvoicesService_List(t *testing.T) {
 	// Setup
 	t.Parallel()
 
-	invoices, response, err := client.SubscriptionInvoices.List(context.Background())
+	invoices, response, err := client.SubscriptionInvoices.List(context.Background(), nil)
 
 	// Assert
 	assert.Nil(t, err)
