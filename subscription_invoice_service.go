@@ -31,8 +31,19 @@ func (service *SubscriptionInvoicesService) Get(ctx context.Context, invoiceID s
 // List a paginated list of subscription invoices.
 //
 // https://docs.lemonsqueezy.com/api/subscription-invoices#list-all-subscription-invoices
-func (service *SubscriptionInvoicesService) List(ctx context.Context) (*SubscriptionInvoicesAPIResponse, *Response, error) {
-	response, err := service.client.do(ctx, http.MethodGet, "/v1/subscription-invoices")
+func (service *SubscriptionInvoicesService) List(ctx context.Context, filters map[string]string) (*SubscriptionInvoicesAPIResponse, *Response, error) {
+	endpoint, err := url.Parse("/v1/subscription-invoices")
+	if err != nil {
+		return nil, nil, err
+	}
+
+	query := endpoint.Query()
+	for key, val := range filters {
+		query.Add(key, val)
+	}
+	endpoint.RawQuery = query.Encode()
+
+	response, err := service.client.do(ctx, http.MethodGet, endpoint.String())
 	if err != nil {
 		return nil, response, err
 	}
