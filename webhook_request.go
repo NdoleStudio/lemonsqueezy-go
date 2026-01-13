@@ -7,7 +7,7 @@ type WebhookRequestOrder WebhookRequest[OrderAttributes, APIResponseRelationship
 type WebhookRequestSubscription WebhookRequest[Subscription, ApiResponseRelationshipsSubscription]
 
 // WebhookRequestSubscriptionInvoice is the payload for subscription invoice related events e.g. subscription_payment_success, subscription_payment_failed
-type WebhookRequestSubscriptionInvoice WebhookRequest[SubscriptionInvoiceAttributes, ApiResponseRelationshipsSubscriptionInvoice]
+type WebhookRequestSubscriptionInvoice WebhookRequest[SubscriptionInvoiceAttributes, APIResponseRelationshipsSubscriptionInvoice]
 
 // WebhookRequestLicenseKey is the payload for license key related events e.g. license_key_created
 type WebhookRequestLicenseKey WebhookRequest[LicenseKeyAttributes, ApiResponseRelationshipsLicenseKey]

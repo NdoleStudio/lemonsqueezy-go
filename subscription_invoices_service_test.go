@@ -93,3 +93,53 @@ func TestSubscriptionInvoicesService_ListWithError(t *testing.T) {
 	// Teardown
 	server.Close()
 }
+
+func TestSubscriptionInvoicesService_Generate(t *testing.T) {
+	// Setup
+	t.Parallel()
+
+	// Arrange
+	server := helpers.MakeTestServer(http.StatusOK, stubs.SubscriptionInvoicesListResponse())
+	client := New(WithBaseURL(server.URL))
+
+	// Act
+	invoices, response, err := client.SubscriptionInvoices.List(context.Background())
+
+	// Assert
+	assert.Nil(t, err)
+
+	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
+	assert.Equal(t, stubs.SubscriptionInvoicesListResponse(), *response.Body)
+	assert.Equal(t, 1, len(invoices.Data))
+
+	// Teardown
+	server.Close()
+}
+
+func TestSubscriptionInvoicesService_GenerateWithError(t *testing.T) {
+	// Setup
+	t.Parallel()
+
+	// Arrange
+	server := helpers.MakeTestServer(http.StatusInternalServerError, nil)
+	client := New(WithBaseURL(server.URL))
+
+	// Act
+	_, response, err := client.SubscriptionInvoices.Generate(context.Background(), "1234", map[string]string{
+		"address":  "123 Main St",
+		"city":     "Anytown",
+		"country":  "US",
+		"name":     "John Doe",
+		"notes":    "Thank you for your business",
+		"state":    "CA",
+		"zip_code": "12345",
+	})
+
+	// Assert
+	assert.NotNil(t, err)
+
+	assert.Equal(t, http.StatusInternalServerError, response.HTTPResponse.StatusCode)
+
+	// Teardown
+	server.Close()
+}

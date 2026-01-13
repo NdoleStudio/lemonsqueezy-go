@@ -36,14 +36,24 @@ type SubscriptionInvoiceAttributes struct {
 	TestMode  bool      `json:"test_mode"`
 }
 
-// ApiResponseRelationshipsSubscriptionInvoice relationships of a subscription invoice
-type ApiResponseRelationshipsSubscriptionInvoice struct {
+// APIResponseRelationshipsSubscriptionInvoice relationships of a subscription invoice
+type APIResponseRelationshipsSubscriptionInvoice struct {
 	Store        ApiResponseLinks `json:"store"`
 	Subscription ApiResponseLinks `json:"subscription"`
 }
 
-// SubscriptionInvoiceApiResponse is the api response for one subscription invoice
-type SubscriptionInvoiceApiResponse = ApiResponse[SubscriptionInvoiceAttributes, ApiResponseRelationshipsSubscriptionInvoice]
+// SubscriptionInvoiceAPIResponse is the api response for one subscription invoice
+type SubscriptionInvoiceAPIResponse = ApiResponse[SubscriptionInvoiceAttributes, APIResponseRelationshipsSubscriptionInvoice]
 
-// SubscriptionInvoicesApiResponse is the api response for a list of subscription invoices.
-type SubscriptionInvoicesApiResponse = ApiResponseList[SubscriptionInvoiceAttributes, ApiResponseRelationshipsSubscriptionInvoice]
+// SubscriptionInvoicesAPIResponse is the api response for a list of subscription invoices.
+type SubscriptionInvoicesAPIResponse = ApiResponseList[SubscriptionInvoiceAttributes, APIResponseRelationshipsSubscriptionInvoice]
+
+// SubscriptionInvoiceGenerateResponse is the response when generating a subscription invoice
+type SubscriptionInvoiceGenerateResponse struct {
+	JSONAPI ApiResponseJSONAPI `json:"jsonapi"`
+	Meta    struct {
+		Urls struct {
+			DownloadInvoice string `json:"download_invoice"`
+		} `json:"urls"`
+	} `json:"meta"`
+}

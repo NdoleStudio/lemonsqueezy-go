@@ -60,6 +60,7 @@ import "github.com/NdoleStudio/lemonsqueezy-go"
 - **Subscription Invoices**
   - `GET /v1/subscription-invoices/:id`: Retrieve a subscription invoice
   - `GET /v1/subscription-invoices`: List all subscription invoices
+  - `POST /v1/subscription-invoices/:id/generate-invoice`: Generate a subscription invoice
 - **Subscription Items**
   - `GET /v1/subscription-items/:id`: Retrieve a subscription item
   - `PATCH /v1/subscription-items/:id`: Update a subscription item
