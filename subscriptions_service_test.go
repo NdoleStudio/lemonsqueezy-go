@@ -2,6 +2,7 @@ package lemonsqueezy
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 	"testing"
 	"time"
@@ -9,6 +10,7 @@ import (
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/helpers"
 	"github.com/NdoleStudio/lemonsqueezy-go/internal/stubs"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestSubscriptionsService_Get(t *testing.T) {
@@ -353,6 +355,44 @@ func TestSubscriptionsService_UpdateWithError(t *testing.T) {
 
 	// Teardown
 	server.Close()
+}
+
+func TestSubscriptionUpdateParamsAttributes_TrialEndsAt(t *testing.T) {
+	t.Parallel()
+
+	trialEnd := time.Date(2024, time.April, 20, 10, 30, 0, 0, time.UTC)
+	trialEndPtr := &trialEnd
+	var nilTime *time.Time
+
+	tests := []struct {
+		name         string
+		params       SubscriptionUpdateParamsAttributes
+		expectedJSON string
+	}{
+		{
+			name:         "Omitted",
+			params:       SubscriptionUpdateParamsAttributes{VariantID: 11},
+			expectedJSON: ``,
+		},
+		{
+			name:         "Null",
+			params:       SubscriptionUpdateParamsAttributes{VariantID: 11, TrialEndsAt: &nilTime},
+			expectedJSON: `"trial_ends_at":null`,
+		},
+		{
+			name:         "ISO8601",
+			params:       SubscriptionUpdateParamsAttributes{TrialEndsAt: &trialEndPtr},
+			expectedJSON: `"trial_ends_at":"2024-04-20T10:30:00Z"`,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			bs, err := json.Marshal(tt.params)
+			require.NoError(t, err)
+			assert.Contains(t, string(bs), tt.expectedJSON)
+		})
+	}
 }
 
 func TestSubscriptionsService_List(t *testing.T) {

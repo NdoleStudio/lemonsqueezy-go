@@ -66,6 +66,7 @@ type SubscriptionUpdateParamsAttributes struct {
 	Pause              *SubscriptionPause `json:"pause,omitempty"`
 	InvoiceImmediately bool               `json:"invoice_immediately"`
 	DisableProrations  bool               `json:"disable_prorations"`
+	TrialEndsAt        **time.Time        `json:"trial_ends_at,omitempty"`
 }
 
 // ApiResponseRelationshipsSubscription relationships of a subscription object
