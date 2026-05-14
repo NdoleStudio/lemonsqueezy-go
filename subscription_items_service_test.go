@@ -28,14 +28,14 @@ func TestSubscriptionItemsService_Get(t *testing.T) {
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionItemGetResponse(), *response.Body)
 
-	assert.Equal(t, &SubscriptionItemApiResponse{
+	assert.Equal(t, &SubscriptionItemAPIResponse{
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
 		Links: ApiResponseSelfLink{
 			Self: "https://api.lemonsqueezy.com/v1/subscription-item/1",
 		},
-		Data: ApiResponseData[SubscriptionItem, ApiResponseRelationshipsSubscriptionItem]{
+		Data: ApiResponseData[SubscriptionItem, APIResponseRelationshipsSubscriptionItem]{
 			Type: "subscription-items",
 			ID:   "1",
 			Attributes: SubscriptionItem{
@@ -46,7 +46,7 @@ func TestSubscriptionItemsService_Get(t *testing.T) {
 				CreatedAt:      time.Date(2023, time.July, 18, 12, 16, 24, 0, time.UTC),
 				UpdatedAt:      time.Date(2023, time.July, 18, 12, 16, 24, 0, time.UTC),
 			},
-			Relationships: ApiResponseRelationshipsSubscriptionItem{
+			Relationships: APIResponseRelationshipsSubscriptionItem{
 				Subscription: ApiResponseLinks{
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscription-items/1/subscription",
@@ -204,11 +204,11 @@ func TestSubscriptionItemsService_CurrentUsage(t *testing.T) {
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionItemCurrentUsageResponse(), *response.Body)
 
-	assert.Equal(t, &SubscriptionItemCurrentUsageApiResponse{
+	assert.Equal(t, &SubscriptionItemCurrentUsageAPIResponse{
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
-		Meta: ApiResponseMetaSubscriptionItemCurrentUsage{
+		Meta: APIResponseMetaSubscriptionItemCurrentUsage{
 			PeriodStart:      time.Date(2023, time.August, 10, 13, 8, 16, 0, time.UTC),
 			PeriodEnd:        time.Date(2023, time.September, 10, 13, 3, 16, 0, time.UTC),
 			Quantity:         5,

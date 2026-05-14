@@ -2,7 +2,7 @@ package lemonsqueezy
 
 import "time"
 
-// In Lemon Squeezy A subscription item is an object that links a price to a subscription and also contains quantity information.
+// SubscriptionItem is an object that links a price to a subscription and also contains quantity information.
 // https://docs.lemonsqueezy.com/api/subscription-items#the-subscription-item-object
 type SubscriptionItem struct {
 	SubscriptionID int       `json:"subscription_id"`
@@ -13,7 +13,7 @@ type SubscriptionItem struct {
 	UpdatedAt      time.Time `json:"updated_at"`
 }
 
-// SubscriptionUpdateParams are parameters for updating a subscription
+// SubscriptionItemUpdateParams are parameters for updating a subscription item
 type SubscriptionItemUpdateParams struct {
 	ID         string                                 `json:"id"`
 	Attributes SubscriptionItemUpdateParamsAttributes `json:"attributes"`
@@ -25,12 +25,13 @@ type SubscriptionItemListParams struct {
 	PriceID        string
 }
 
-// SubscriptionUpdateParamsAttributes are subscription update attributes
+// SubscriptionItemUpdateParamsAttributes are subscription item update attributes
 type SubscriptionItemUpdateParamsAttributes struct {
 	Quantity int `json:"quantity,omitempty"`
 }
 
-type ApiResponseMetaSubscriptionItemCurrentUsage struct {
+// APIResponseMetaSubscriptionItemCurrentUsage contains usage metadata for a subscription item
+type APIResponseMetaSubscriptionItemCurrentUsage struct {
 	PeriodStart      time.Time `json:"period_start"`
 	PeriodEnd        time.Time `json:"period_end"`
 	Quantity         int       `json:"quantity"`
@@ -38,21 +39,21 @@ type ApiResponseMetaSubscriptionItemCurrentUsage struct {
 	IntervalQuantity int       `json:"interval_quantity"`
 }
 
-// ApiResponseRelationshipsSubscription relationships of a subscription item object
-type ApiResponseRelationshipsSubscriptionItem struct {
+// APIResponseRelationshipsSubscriptionItem contains the relationships of a subscription item object
+type APIResponseRelationshipsSubscriptionItem struct {
 	Subscription ApiResponseLinks `json:"subscription"`
 	Price        ApiResponseLinks `json:"price"`
 	UsageRecords ApiResponseLinks `json:"usage-records"`
 }
 
-// SubscriptionItemApiResponse represents a subscription item api response
-type SubscriptionItemApiResponse = ApiResponse[SubscriptionItem, ApiResponseRelationshipsSubscriptionItem]
+// SubscriptionItemAPIResponse represents a subscription item api response
+type SubscriptionItemAPIResponse = ApiResponse[SubscriptionItem, APIResponseRelationshipsSubscriptionItem]
 
-// SubscriptionItemsApiResponse represents a list of subscription items api responses
-type SubscriptionItemsApiResponse = ApiResponseList[SubscriptionItem, ApiResponseRelationshipsSubscriptionItem]
+// SubscriptionItemsAPIResponse represents a list of subscription items api responses
+type SubscriptionItemsAPIResponse = ApiResponseList[SubscriptionItem, APIResponseRelationshipsSubscriptionItem]
 
-// SubscriptionItemsCurrentUsageApiResponse represents the subscription item's current usage api response
-type SubscriptionItemCurrentUsageApiResponse struct {
+// SubscriptionItemCurrentUsageAPIResponse represents the subscription item's current usage api response
+type SubscriptionItemCurrentUsageAPIResponse struct {
 	Jsonapi ApiResponseJSONAPI                          `json:"jsonapi"`
-	Meta    ApiResponseMetaSubscriptionItemCurrentUsage `json:"meta"`
+	Meta    APIResponseMetaSubscriptionItemCurrentUsage `json:"meta"`
 }

@@ -33,7 +33,7 @@ type Subscription struct {
 	TestMode              bool                               `json:"test_mode"`
 }
 
-// SubscriptionSubscriptionItem is an object representing the first subscription item belonging to this subscription.
+// SubscriptionFirstSubscriptionItem is an object representing the first subscription item belonging to this subscription.
 type SubscriptionFirstSubscriptionItem struct {
 	ID int `json:"id"`
 	SubscriptionItem
@@ -66,11 +66,11 @@ type SubscriptionUpdateParamsAttributes struct {
 	Pause              *SubscriptionPause `json:"pause,omitempty"`
 	InvoiceImmediately bool               `json:"invoice_immediately"`
 	DisableProrations  bool               `json:"disable_prorations"`
-	TrialEndsAt        **time.Time        `json:"trial_ends_at,omitempty"`
+	TrialEndsAt        *time.Time         `json:"trial_ends_at,omitempty"`
 }
 
-// ApiResponseRelationshipsSubscription relationships of a subscription object
-type ApiResponseRelationshipsSubscription struct {
+// APIResponseRelationshipsSubscription relationships of a subscription object
+type APIResponseRelationshipsSubscription struct {
 	Store                ApiResponseLinks `json:"store"`
 	Customer             ApiResponseLinks `json:"customer"`
 	Order                ApiResponseLinks `json:"order"`
@@ -81,8 +81,8 @@ type ApiResponseRelationshipsSubscription struct {
 	SubscriptionInvoices ApiResponseLinks `json:"subscription-invoices"`
 }
 
-// SubscriptionApiResponse represents a subscription api response
-type SubscriptionApiResponse = ApiResponse[Subscription, ApiResponseRelationshipsSubscription]
+// SubscriptionAPIResponse represents a subscription api response
+type SubscriptionAPIResponse = ApiResponse[Subscription, APIResponseRelationshipsSubscription]
 
-// SubscriptionsApiResponse represents a list of subscription api responses.
-type SubscriptionsApiResponse = ApiResponseList[Subscription, ApiResponseRelationshipsSubscription]
+// SubscriptionsAPIResponse represents a list of subscription api responses.
+type SubscriptionsAPIResponse = ApiResponseList[Subscription, APIResponseRelationshipsSubscription]

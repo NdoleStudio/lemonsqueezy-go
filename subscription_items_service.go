@@ -13,7 +13,7 @@ type SubscriptionItemsService service
 // Update a subscription item
 //
 // https://docs.lemonsqueezy.com/api/subscription-items#update-a-subscription-item
-func (service *SubscriptionItemsService) Update(ctx context.Context, params *SubscriptionItemUpdateParams) (*SubscriptionItemApiResponse, *Response, error) {
+func (service *SubscriptionItemsService) Update(ctx context.Context, params *SubscriptionItemUpdateParams) (*SubscriptionItemAPIResponse, *Response, error) {
 	payload := map[string]any{
 		"data": map[string]any{
 			"type":       "subscription-items",
@@ -27,7 +27,7 @@ func (service *SubscriptionItemsService) Update(ctx context.Context, params *Sub
 		return nil, response, err
 	}
 
-	subscriptionItem := new(SubscriptionItemApiResponse)
+	subscriptionItem := new(SubscriptionItemAPIResponse)
 	if err = json.Unmarshal(*response.Body, subscriptionItem); err != nil {
 		return nil, response, err
 	}
@@ -38,7 +38,7 @@ func (service *SubscriptionItemsService) Update(ctx context.Context, params *Sub
 // List returns a paginated list of subscription items you can add extra query params to your request
 //
 // https://docs.lemonsqueezy.com/api/subscriptions#list-all-subscriptions
-func (service *SubscriptionItemsService) List(ctx context.Context, queryParams map[string]string) (*SubscriptionItemsApiResponse, *Response, error) {
+func (service *SubscriptionItemsService) List(ctx context.Context, queryParams map[string]string) (*SubscriptionItemsAPIResponse, *Response, error) {
 	basePath := "/v1/subscription-items"
 	parsedURL, err := url.Parse(basePath)
 	if err != nil {
@@ -58,7 +58,7 @@ func (service *SubscriptionItemsService) List(ctx context.Context, queryParams m
 		return nil, response, err
 	}
 
-	subscriptionItems := new(SubscriptionItemsApiResponse)
+	subscriptionItems := new(SubscriptionItemsAPIResponse)
 	if err = json.Unmarshal(*response.Body, subscriptionItems); err != nil {
 		return nil, response, err
 	}
@@ -69,13 +69,13 @@ func (service *SubscriptionItemsService) List(ctx context.Context, queryParams m
 // Get returns the subscription item with the given ID.
 //
 // https://docs.lemonsqueezy.com/api/subscription-items#retrieve-a-subscription-item
-func (service *SubscriptionItemsService) Get(ctx context.Context, subscriptionItemID string) (*SubscriptionItemApiResponse, *Response, error) {
+func (service *SubscriptionItemsService) Get(ctx context.Context, subscriptionItemID string) (*SubscriptionItemAPIResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/subscription-items/"+subscriptionItemID)
 	if err != nil {
 		return nil, response, err
 	}
 
-	subscriptionItem := new(SubscriptionItemApiResponse)
+	subscriptionItem := new(SubscriptionItemAPIResponse)
 	if err = json.Unmarshal(*response.Body, subscriptionItem); err != nil {
 		return nil, response, err
 	}
@@ -83,16 +83,16 @@ func (service *SubscriptionItemsService) Get(ctx context.Context, subscriptionIt
 	return subscriptionItem, response, nil
 }
 
-// Current usage returns a subscription item's current usage with the given ID.
+// CurrentUsage returns a subscription item's current usage with the given ID.
 //
 // https://docs.lemonsqueezy.com/api/subscription-items#retrieve-a-subscription-item-s-current-usage
-func (service *SubscriptionItemsService) CurrentUsage(ctx context.Context, subscriptionItemID string) (*SubscriptionItemCurrentUsageApiResponse, *Response, error) {
+func (service *SubscriptionItemsService) CurrentUsage(ctx context.Context, subscriptionItemID string) (*SubscriptionItemCurrentUsageAPIResponse, *Response, error) {
 	response, err := service.client.do(ctx, http.MethodGet, "/v1/subscription-items/"+subscriptionItemID+"/current-usage")
 	if err != nil {
 		return nil, response, err
 	}
 
-	subscriptionItemCurrentUsage := new(SubscriptionItemCurrentUsageApiResponse)
+	subscriptionItemCurrentUsage := new(SubscriptionItemCurrentUsageAPIResponse)
 	if err = json.Unmarshal(*response.Body, subscriptionItemCurrentUsage); err != nil {
 		return nil, response, err
 	}

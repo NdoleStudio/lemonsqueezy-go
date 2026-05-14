@@ -30,14 +30,14 @@ func TestSubscriptionsService_Get(t *testing.T) {
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionGetResponse(), *response.Body)
 
-	assert.Equal(t, &SubscriptionApiResponse{
+	assert.Equal(t, &SubscriptionAPIResponse{
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
 		Links: ApiResponseSelfLink{
 			Self: "https://api.lemonsqueezy.com/v1/subscriptions/1",
 		},
-		Data: ApiResponseData[Subscription, ApiResponseRelationshipsSubscription]{
+		Data: ApiResponseData[Subscription, APIResponseRelationshipsSubscription]{
 			Type: "subscriptions",
 			ID:   "1",
 			Attributes: Subscription{
@@ -80,7 +80,7 @@ func TestSubscriptionsService_Get(t *testing.T) {
 				UpdatedAt: time.Date(2021, time.August, 11, 13, 54, 19, 0, time.UTC),
 				TestMode:  false,
 			},
-			Relationships: ApiResponseRelationshipsSubscription{
+			Relationships: APIResponseRelationshipsSubscription{
 				Store: ApiResponseLinks{
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/store",
@@ -177,14 +177,14 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 	assert.Equal(t, http.StatusOK, response.HTTPResponse.StatusCode)
 	assert.Equal(t, stubs.SubscriptionCancelResponse(), *response.Body)
 
-	assert.Equal(t, &SubscriptionApiResponse{
+	assert.Equal(t, &SubscriptionAPIResponse{
 		Jsonapi: ApiResponseJSONAPI{
 			Version: "1.0",
 		},
 		Links: ApiResponseSelfLink{
 			Self: "https://api.lemonsqueezy.com/v1/subscriptions/1",
 		},
-		Data: ApiResponseData[Subscription, ApiResponseRelationshipsSubscription]{
+		Data: ApiResponseData[Subscription, APIResponseRelationshipsSubscription]{
 			Type: "subscriptions",
 			ID:   "1",
 			Attributes: Subscription{
@@ -228,7 +228,7 @@ func TestSubscriptionsService_Cancel(t *testing.T) {
 				UpdatedAt: time.Date(2021, time.August, 11, 13, 54, 19, 0, time.UTC),
 				TestMode:  false,
 			},
-			Relationships: ApiResponseRelationshipsSubscription{
+			Relationships: APIResponseRelationshipsSubscription{
 				Store: ApiResponseLinks{
 					Links: ApiResponseLink{
 						Related: "https://api.lemonsqueezy.com/v1/subscriptions/1/store",
@@ -361,9 +361,6 @@ func TestSubscriptionUpdateParamsAttributes_TrialEndsAt(t *testing.T) {
 	t.Parallel()
 
 	trialEnd := time.Date(2024, time.April, 20, 10, 30, 0, 0, time.UTC)
-	trialEndPtr := &trialEnd
-	var nilTime *time.Time
-
 	tests := []struct {
 		name         string
 		params       SubscriptionUpdateParamsAttributes
@@ -375,13 +372,8 @@ func TestSubscriptionUpdateParamsAttributes_TrialEndsAt(t *testing.T) {
 			expectedJSON: ``,
 		},
 		{
-			name:         "Null",
-			params:       SubscriptionUpdateParamsAttributes{VariantID: 11, TrialEndsAt: &nilTime},
-			expectedJSON: `"trial_ends_at":null`,
-		},
-		{
 			name:         "ISO8601",
-			params:       SubscriptionUpdateParamsAttributes{TrialEndsAt: &trialEndPtr},
+			params:       SubscriptionUpdateParamsAttributes{TrialEndsAt: &trialEnd},
 			expectedJSON: `"trial_ends_at":"2024-04-20T10:30:00Z"`,
 		},
 	}
