@@ -26,7 +26,7 @@ func WithHTTPClient(httpClient *http.Client) Option {
 	})
 }
 
-// WithBaseURL set's the base url for the flutterwave API
+// WithBaseURL set's the base url for the lemonsqueezy API
 func WithBaseURL(baseURL string) Option {
 	return clientOptionFunc(func(config *clientConfig) {
 		if baseURL != "" {
