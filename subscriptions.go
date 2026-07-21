@@ -41,8 +41,9 @@ type SubscriptionFirstSubscriptionItem struct {
 
 // SubscriptionURLs is object of customer-facing URLs for managing the subscription.
 type SubscriptionURLs struct {
-	UpdatePaymentMethod string `json:"update_payment_method"`
-	CustomerPortal      string `json:"customer_portal"`
+	UpdatePaymentMethod              string `json:"update_payment_method"`
+	CustomerPortal                   string `json:"customer_portal"`
+	CustomerPortalUpdateSubscription string `json:"customer_portal_update_subscription"`
 }
 
 // SubscriptionPause is object of customer-facing URLs for managing the subscription.
